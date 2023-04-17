@@ -6,7 +6,7 @@
 #    By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 18:09:22 by lorbke            #+#    #+#              #
-#    Updated: 2023/04/17 20:10:20 by lorbke           ###   ########.fr        #
+#    Updated: 2023/04/17 22:02:20 by lorbke           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,10 +35,11 @@ print_header()
 	echo -e "# ---------------------------------------------------------------------------- #$RESET"
 }
 
-# takes 3 arguments:
+# takes 4 arguments:
 # 1. number of the test
 # 2. result of the test (0 if OK, 1 if KO)
-# 3. error message or incorrect output by the program (if KO)
+# 3. expected output (if KO)
+# 4. error message or incorrect output by the program (if KO)
 echo_result()
 {
 	echo -n -e "$BLUE $1. $RESET"
@@ -46,8 +47,9 @@ echo_result()
 	then
 		echo -e "$GREEN [OK]$RESET"
 	else
-		echo -n -e "$RED [KO]:$RESET"
-		echo -e "$RED $3$RESET"
+		echo -e "$RED [KO]$RESET"
+		echo -e "$BLUE |$YELLOW Expected output: '$3'$RESET"
+		echo -e "$BLUE |$YELLOW Actual output:   '$4'$RESET"
 	fi
 }
 
@@ -61,27 +63,32 @@ clean_files()
 
 test_cflags()
 {
-	make re | grep -q "c++ -Wall -Wextra -Werror -std=c++98"
-	echo_result 0 $? "Flags are not correct"
+	make re > $FILE_OUT_TEST
+	grep -q "c++ -Wall -Wextra -Werror -std=c++98" $FILE_OUT_TEST
+	echo_result 0 $? "Check Makefile." "Flags are not correct"
 }
 
-test_cases()
+# @note files technically not necessary, the two strings can be compared directly
+test_file_cases()
 {
 	i=0
-	while read line; do
-		if [ "${line:0:2}" = "$NEXT_CASE" ]
+	while read test_str; do
+		if [ "${test_str:0:2}" = "$NEXT_CASE" ]
 		then
 			((i++))
-			eval $line > $FILE_OUT_TEST
-			read line
-			echo "$line" > $FILE_OUT_TRUE
+			eval $test_str > $FILE_OUT_TEST
+			test_str=$(cat $FILE_OUT_TEST)
+			read true_str
+			echo "$true_str" > $FILE_OUT_TRUE
 			diff $FILE_OUT_TEST $FILE_OUT_TRUE > /dev/null
-			echo_result $i $? "$line"
+			echo_result $i $? "$true_str" "$test_str"
 		fi
 	done < "$FILE_CASES"
 }
 
+# ______________________________________________________________________ MAIN #
+
 print_header
 test_cflags
-test_cases
-#clean_files
+test_file_cases
+clean_files
