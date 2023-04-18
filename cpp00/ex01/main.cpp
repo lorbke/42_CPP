@@ -76,6 +76,8 @@ void	search_function(PhoneBook phonebook)
 
 // @note ctrl d error
 // @todo refactor by understanding std::cout << stuff better
+// @todo uncomment all fields
+// @todo switch back to ADD and SEARCH instead of a and s
 int	main(void)
 {
 	PhoneBook	phonebook;
