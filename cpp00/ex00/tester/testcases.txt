@@ -19,3 +19,5 @@ DAMNIT ! SORRY STUDENTS, I THOUGHT THIS THING WAS OFF.
 
 ./megaphone ""
 
+./megaphone " "
+ 

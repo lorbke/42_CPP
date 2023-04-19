@@ -12,7 +12,7 @@
 
 # __________________________________________________________________ VARIABLES #
 
-SHELL	:= /bin/bash -c
+SHELL	:= /bin/bash
 
 NAME	:= megaphone
 

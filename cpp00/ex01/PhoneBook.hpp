@@ -17,7 +17,7 @@ class	PhoneBook
 		int		get_count(void);
 
 	private:	
-		Contact	contacts[8];
+		Contact	_contacts[8];
 		int		count;
 };
 

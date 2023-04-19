@@ -14,13 +14,13 @@
 
 SHELL	:= /bin/bash
 
-NAME	:= phonebook
+NAME	:= accounts
 
 CC		:= c++
 CFLAGS	:= #-Wall -Wextra -Werror
 CFLAGS	+= -std=c++98
 
-SRCS	:= PhoneBook.cpp main.cpp
+SRCS	:= tests.cpp Account.cpp
 OBJS	:= $(SRCS:.cpp=.o)
 
 # _____________________________________________________________________ COLORS #

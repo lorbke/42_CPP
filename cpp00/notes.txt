@@ -1,0 +1,48 @@
+
+
+===============New Concepts================
+
+	---------------Overloading----------------
+
+		Defining multiple functions (iterations) and operators with the same name.
+
+
+	---------------Type Safety----------------
+	
+		Compile-time checking of types.
+		Overloading is type safe because the compiler can determine which iteration of a function to call based on the types of the arguments.
+
+	---------Orthodox Canonical Form----------
+
+		- order of member variables and functions
+			- public functions
+			- protected functions
+			- private functions
+			- public variables
+			- protected variables
+			- private variables
+		- use const whenever possible
+		- use initialization lists to initialize member variables in the constructor
+
+
+	--------------New Keywords----------------
+
+		- Constructor
+			- always exists, even if not defined
+			- purpose is to initialize member variables
+
+		- public
+			- accessible to all
+		- private
+			- accessible only to the class
+			- private variables and functions begin with an underscore
+		- protected
+			- accessible to the class and its derived classes (classes that inherit this class)
+		- virtual
+			- allows derived classes to override the function
+		- override
+			- overrides a virtual function
+		- static
+			- a class member can be static, which means it is shared by all instances of the class
+			- there does not have to be an instance created to access a static member
+		

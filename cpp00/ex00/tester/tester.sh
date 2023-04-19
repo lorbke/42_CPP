@@ -31,7 +31,7 @@ FILE_OUT_TRUE="tester/true_out"
 print_header()
 {
 	echo -e "$YELLOW# ---------------------------------------------------------------------------- #"
-	echo "| TESTER                                                                       |"
+	echo "|                                    TESTER                                    |"
 	echo -e "# ---------------------------------------------------------------------------- #$RESET"
 }
 
@@ -49,7 +49,7 @@ echo_result()
 	else
 		echo -e "$RED [KO]$RESET"
 		echo -e "$BLUE |$YELLOW Expected output: '$3'$RESET"
-		echo -e "$BLUE |$YELLOW Actual output:   '$4'$RESET"
+		echo -e "$BLUE |$YELLOW   Actual output: '$4'$RESET"
 	fi
 }
 
