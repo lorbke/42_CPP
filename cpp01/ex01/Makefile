@@ -14,13 +14,13 @@
 
 SHELL	:= /bin/bash
 
-NAME	:= zombie
+NAME	:= zombieHorde
 
 CC		:= c++
 CFLAGS	:= -Wall -Wextra -Werror
 CFLAGS	+= -std=c++98
 
-SRCS	:= main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
+SRCS	:= main.cpp Zombie.cpp zombieHorde.cpp
 OBJS	:= $(SRCS:.cpp=.o)
 
 # _____________________________________________________________________ COLORS #
@@ -46,7 +46,19 @@ fclean: clean
 
 re: fclean all
 
+# ______________________________________________________________ TESTING RULES #
+
 test:
 	@$(SHELL) tester/tester.sh
 
-.PHONY: all clean fclean re test
+run: all
+	@./$(NAME)
+
+rawrun:
+	@$(CC) $(SRCS) -o $(NAME)
+	@./$(NAME)
+
+val: all
+	@valgrind --leak-check=full ./$(NAME)
+
+.PHONY: all clean fclean re test run rawrun val

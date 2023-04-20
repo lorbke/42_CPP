@@ -45,4 +45,8 @@
 		- static
 			- a class member can be static, which means it is shared by all instances of the class
 			- there does not have to be an instance created to access a static member
+		- this
+			- refers to the current instance of the class
+		- new
+			- creates new instance of an object on the heap
 		
