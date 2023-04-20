@@ -7,6 +7,15 @@
 		Defining multiple functions (iterations) and operators with the same name.
 
 
+	---------------References-----------------
+
+		A safer and more convenient pointer.
+		
+		A reference is an alias for a variable.
+		Any changes made to the reference are reflected in the original variable.
+
+		
+
 	---------------Type Safety----------------
 	
 		Compile-time checking of types.
