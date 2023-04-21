@@ -14,7 +14,8 @@
 		A reference is an alias for a variable.
 		Any changes made to the reference are reflected in the original variable.
 
-		
+		A reference cannot be null and must be initialized when declared.
+
 
 	---------------Type Safety----------------
 	
