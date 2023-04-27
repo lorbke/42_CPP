@@ -2,6 +2,47 @@
 
 ===============New Concepts================
 
+	----------Floating Point Numbers----------
+
+		Bit representation of floating point numbers:
+			- sign bit
+			- exponent
+				- 2 to the power of x, where x is the number needed to get enough mantissa digits in front of the decimal point
+			- mantissa
+				- the actual digits of the number
+
+		Can lead to rounding errors when a number has infinite digits, such as 1/3.
+
+	------------Member Functions--------------
+
+		A function that is part of a class.
+
+		The first parameter is implicitly the object the function is called on.
+
+	-------------Operator Functions-----------
+
+		Will overload an operator (like =) with a function.
+
+		Depending on which operator is overloaded, the function takes a set of
+		predetermined parameters.
+
+	--------------Compiler Extensions---------
+
+		These are compiler specific features that are not part of the C++ standard.
+		They are supposed to make the language easier to use, but they are not portable.
+
+		__attribute__ ((constructor))
+			- tells the compiler to ignore certain warnings and much more
+
+		It is not clear to me how this is different from compiler symbols,
+		which are also compiler specific features that are not part of the C++ standard.
+
+	--------------Namespaces-----------------
+
+		A namespace is a scope that contains a set of names to access functions, variables, and other entities.
+
+		Namespaces are used to prevent name collisions, because the same name can be used in different namespaces.
+
 	---------------Overloading----------------
 
 		Defining multiple functions (iterations) and operators with the same name.
@@ -24,6 +65,12 @@
 
 	---------Orthodox Canonical Form----------
 
+		- classes must always have these member functions:
+			- default constructor
+			- copy constructor
+			- copy assignment operator
+			- destructor
+
 		- order of member variables and functions
 			- public functions
 			- protected functions
@@ -33,7 +80,6 @@
 			- private variables
 		- use const whenever possible
 		- use initialization lists to initialize member variables in the constructor
-
 
 	--------------New Keywords----------------
 
