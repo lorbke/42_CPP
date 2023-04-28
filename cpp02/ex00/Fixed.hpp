@@ -5,12 +5,12 @@
 class	Fixed
 {
 	public:
-		Fixed();
-		Fixed(const Fixed& original);
-		Fixed&	operator=(const Fixed& original);
-		~Fixed();
-		int	getRawBits(void) const;
-		void		setRawBits(const int raw);
+				Fixed();
+				Fixed(const Fixed& original);
+				Fixed&	operator=(const Fixed& original);
+				~Fixed();
+		int		getRawBits(void) const;
+		void	setRawBits(const int raw);
 
 	private:
 		int					_value;

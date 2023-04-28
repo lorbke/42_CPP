@@ -1,28 +1,39 @@
 
 #include "Fixed.hpp"
-#include <iostream>
+#include "Point.hpp"
+#include "MLX42.h"
+
+#define	WIDTH	400
+#define	HEIGHT	400
 
 std::ostream&	operator<<(std::ostream& out, const Fixed& fixed);
+bool 			bsp( Point const a, Point const b, Point const c, Point const point);
 
-// @note why is the converted 42.42 = 42.4219?
-// has something to do with loss of precision
-// https://www.h-schmidt.net/FloatConverter/IEEE754.html
-
-// @todo better understanding of the conversion from float to int
-
-int main( void )
+void	draw_triangle(Point a, Point b, Point c)
 {
-	Fixed a;
-	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+	mlx_t		*mlx = mlx_init(WIDTH, HEIGHT, "Triangle", false);
+	mlx_image_t	*image = mlx_new_image(mlx, WIDTH, HEIGHT);
 
-	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
+	mlx_image_to_window(mlx, image, 0, 0);
+	for (int i = 0; i < WIDTH; i++)
+	{
+		for (int j = 0; j < HEIGHT; ++j)
+		{
+			Point	point(i, j);
+			if (bsp(a, b, c, point))
+				mlx_put_pixel(image, i, j, 0xFFFFFFFF);
+		}	
+	}
+	mlx_loop(mlx);
+}
 
-	std::cout << b << std::endl;
+// @todo add self-assignment checks in all copy-assignment operators because of memory errors
+int	main( void )
+{
+	Point	a(0, 0);
+	Point	b(0, 400);
+	Point	c(400, 0);
 
-	std::cout << Fixed::max( a, b ) << std::endl;
+	draw_triangle(a, b, c);
 	return 0;
 }

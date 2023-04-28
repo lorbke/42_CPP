@@ -12,21 +12,32 @@
 
 # __________________________________________________________________ VARIABLES #
 
-SHELL	:= /bin/bash
+SHELL		:= /bin/bash
 
-NAME	:= bsp
+NAME		:= bsp
 
-CC		:= c++
-CFLAGS	:= -Wall -Wextra -Werror
-CFLAGS	+= -std=c++98
+CC			:= c++
+CFLAGS		:= #-Wall -Wextra -Werror
+CFLAGS		+= -std=c++98
 
-SRCS	:= main.cpp Fixed.cpp
-OBJS	:= $(SRCS:.cpp=.o)
+SRCS		:= main.cpp Fixed.cpp Point.cpp bsp.cpp
+OBJS		:= $(SRCS:.cpp=.o)
+
+# __________________________________________________________________ LIBRARIES #
+
+MLX_PATH	:= mlx42/
+MLX_LIB		:= mlx42
+MLX_LINK	:= -L$(MLX_PATH) -l$(MLX_LIB)
+MLX_INC		:= -I$(MLX_PATH)/include/MLX42/
+
+GL_PATH		:= /opt/homebrew/Cellar/glfw/3.3.8/lib/
+GL_LIB		:= glfw
+GL_LINK		:= -L$(GL_PATH) -l$(GL_LIB)
 
 # _____________________________________________________________________ COLORS #
 
-RED		:= \033[0;31m
-GREEN	:= \033[0;32m
+RED			:= \033[0;31m
+GREEN		:= \033[0;32m
 
 # ______________________________________________________________________ RULES #
 
@@ -36,7 +47,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 %.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(MLX_LINK) $(MLX_INC) $(GL_LINK) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
