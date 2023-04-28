@@ -8,6 +8,7 @@ static bool	checkSide(const Point a, const Point b, const Point c)
 		>= 0);
 }
 
+// @todo order points counter clockwise before checking sides
 bool	bsp( Point const a, Point const b, Point const c, Point const point)
 {
 	bool	sideAB = checkSide(a, b, point);

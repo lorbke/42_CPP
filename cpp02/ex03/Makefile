@@ -17,7 +17,7 @@ SHELL		:= /bin/bash
 NAME		:= bsp
 
 CC			:= c++
-CFLAGS		:= #-Wall -Wextra -Werror
+CFLAGS		:= -Wall -Wextra -Werror
 CFLAGS		+= -std=c++98
 
 SRCS		:= main.cpp Fixed.cpp Point.cpp bsp.cpp
@@ -25,7 +25,7 @@ OBJS		:= $(SRCS:.cpp=.o)
 
 # __________________________________________________________________ LIBRARIES #
 
-MLX_PATH	:= mlx42/
+MLX_PATH	:= mlx42
 MLX_LIB		:= mlx42
 MLX_LINK	:= -L$(MLX_PATH) -l$(MLX_LIB)
 MLX_INC		:= -I$(MLX_PATH)/include/MLX42/
@@ -44,10 +44,10 @@ GREEN		:= \033[0;32m
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(MLX_LINK) $(GL_LINK) $(OBJS) -o $(NAME)
 
 %.o: %.cpp
-	$(CC) $(CFLAGS) $(MLX_LINK) $(MLX_INC) $(GL_LINK) -c $< -o $@
+	$(CC) $(CFLAGS) $(MLX_INC) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
@@ -63,13 +63,13 @@ test:
 	@$(SHELL) tester/tester.sh
 
 run: all
-	@./$(NAME) WARNING
+	@./$(NAME)
 
 rawrun:
 	@$(CC) $(SRCS) -o $(NAME)
-	@./$(NAME) WARNING
+	@./$(NAME)
 
 val: all
-	@valgrind --leak-check=full ./$(NAME) WARNING
+	@valgrind --leak-check=full ./$(NAME)
 
 .PHONY: all clean fclean re test run rawrun val
