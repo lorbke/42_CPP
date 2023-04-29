@@ -95,7 +95,8 @@
 		- protected
 			- accessible to the class and its derived classes (classes that inherit this class)
 		- virtual
-			- allows derived classes to override the function
+			- a virtual member of a class can be overridden by a derived class
+			- this ensures that there is no ambiguity when calling a function on a derived class
 		- override
 			- overrides a virtual function
 		- static
@@ -105,4 +106,3 @@
 			- refers to the current instance of the class
 		- new
 			- creates new instance of an object on the heap
-		
