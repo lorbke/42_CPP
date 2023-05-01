@@ -25,10 +25,11 @@ class	PhoneBook
 				PhoneBook();
 		void	add_contact(Contact contact);
 		Contact	get_contact(const int index);
-		int		get_count(void);
+		int		get_max_contacts(void);
 	private:	
 		Contact	_contacts[8];
 		int		_count;
+		int		_max_contacts;
 };
 
 #endif

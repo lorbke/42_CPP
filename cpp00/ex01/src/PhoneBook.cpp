@@ -13,29 +13,25 @@
 #include "PhoneBook.hpp"
 #include <iostream>
 
-#define MAX_CONTACTS 2
 
 PhoneBook::PhoneBook()
 {
 	_count = 0;
+	_max_contacts = 8;
 }
 
-int	PhoneBook::get_count(void)
+int	PhoneBook::get_max_contacts(void)
 {
-	return (_count);
+	return (_max_contacts);
 }
 
 void	PhoneBook::add_contact(Contact contact)
 {
-	if (_count >= MAX_CONTACTS)
-	{
-		_contacts[_count % MAX_CONTACTS] = contact;
-	}
+	if (_count >= _max_contacts)
+		_contacts[_count % _max_contacts] = contact;
 	else
-	{
 		_contacts[_count] = contact;
-		_count++;
-	}
+	_count++;
 }
 
 Contact	PhoneBook::get_contact(const int index)

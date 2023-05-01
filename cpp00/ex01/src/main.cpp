@@ -89,7 +89,7 @@ void	display_contact_long(const Contact contact)
 
 void	search_function(PhoneBook phonebook)
 {
-	int	count = phonebook.get_count();
+	int	count = phonebook.get_max_contacts();
 
 	if (count == 0)
 	{
@@ -116,8 +116,6 @@ void	search_function(PhoneBook phonebook)
 		std::cout << "Invalid index" << std::endl;
 }
 
-// @todo fix contact overwriting
-// @todo switch to ADD and SEARCH commands, max contacts to 8
 int	main(void)
 {
 	PhoneBook	phonebook;
@@ -127,9 +125,9 @@ int	main(void)
 	while (1)
 	{
 		std::getline(std::cin, command);
-		if (command == "a")
+		if (command == "ADD")
 			phonebook.add_contact(get_new_contact());
-		else if (command == "s")
+		else if (command == "SEARCH")
 			search_function(phonebook);
 		else if (command == "EXIT")
 			break ;
