@@ -4,6 +4,7 @@
 
 // @note copy assignment operator?
 // @todo make ClapTrap private attributes protected instead, this way no setters and getters are needed, apply on all exercises
+// subject specifies private attributes in ex00 though
 
 int	main(void)
 {
