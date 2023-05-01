@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 17:05:50 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/01 21:19:32 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/05/01 21:29:34 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ void	search_function(PhoneBook phonebook)
 		std::cout << "Invalid index" << std::endl;
 }
 
+// @todo fix contact overwriting
+// @todo switch to ADD and SEARCH commands, max contacts to 8
 int	main(void)
 {
 	PhoneBook	phonebook;
