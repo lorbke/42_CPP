@@ -1,11 +1,10 @@
 
 #include "Account.hpp" // Account
 #include <iostream> // std::cout
-#include <iomanip> // std::put_time
+#include <ctime> // std::time, std::localtime
 
 // @todo revise code, understand everything better
 // @todo especially understand the tests.cpp file
-// @todo timestamp incorrect
 
 // @note why is this necessary?
 int Account::_nbAccounts = 0;
@@ -13,9 +12,10 @@ int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
-/* ____________________________________________________CONSTRUCTOR/DESTRUCTOR */
+/* ___________________________________________________ CONSTRUCTOR/DESTRUCTOR */
 
-Account::~Account(void) {
+Account::~Account(void)
+{
 	Account::_displayTimestamp();
 	std::cout
 	<< "index:" << Account::_accountIndex
@@ -24,7 +24,8 @@ Account::~Account(void) {
 	<< std::endl;
 }
 
-Account::Account(int initial_deposit) {
+Account::Account(int initial_deposit)
+{
 	Account::_displayTimestamp();
 	std::cout
 	<< "index:" << Account::_nbAccounts
@@ -48,25 +49,30 @@ Account::Account(void)
 	Account::_nbWithdrawals = 0;
 }
 
-/* _____________________________________________________________PUBLIC STATIC */
+/* ____________________________________________________________ PUBLIC STATIC */
 
-int Account::getNbAccounts(void) {
+int Account::getNbAccounts(void)
+{
 	return Account::_nbAccounts;
 }
 
-int Account::getTotalAmount(void) {
+int Account::getTotalAmount(void)
+{
 	return Account::_totalAmount;
 }
 
-int Account::getNbDeposits(void) {
+int Account::getNbDeposits(void)
+{
 	return Account::_totalNbDeposits;
 }
 
-int Account::getNbWithdrawals(void) {
+int Account::getNbWithdrawals(void)
+{
 	return Account::_totalNbWithdrawals;
 }
 
-void Account::displayAccountsInfos(void) {
+void Account::displayAccountsInfos(void)
+{
 	Account::_displayTimestamp();
 	std::cout
 	<< "accounts:" << Account::_nbAccounts
@@ -76,7 +82,7 @@ void Account::displayAccountsInfos(void) {
 	<< std::endl;
 }
 
-/* ____________________________________________________________________PUBLIC */
+/* ___________________________________________________________________ PUBLIC */
 
 void	Account::makeDeposit(int deposit)
 {
@@ -133,16 +139,15 @@ void	Account::displayStatus(void) const
 	<< std::endl;
 }
 
-/* ____________________________________________________________STATIC PRIVATE */
+/* ___________________________________________________________ STATIC PRIVATE */
 
-void	Account::_displayTimestamp(void) {
-	time_t now;
+void	Account::_displayTimestamp(void)
+{
+	time_t		time_raw;
+	char		timestamp[20];
 
-	std::time(&now);
-	std::put_time(std::localtime(&now), "%Y%m%d_%H%M%S");
-
-	std::cout
-	<< "["
-	<< now
-	<< "] ";
+	std::time(&time_raw);
+	tm*			time_info = std::localtime(&time_raw);
+	std::strftime(timestamp, sizeof(timestamp), "[%Y%m%d_%H%M%S]", time_info);
+	std::cout << timestamp;
 }
