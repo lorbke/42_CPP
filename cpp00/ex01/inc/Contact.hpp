@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:53:37 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/01 21:28:28 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/05/02 15:57:53 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,17 @@
 class	Contact
 {
 	public:
+		std::string	get_first_name();
+		std::string	get_last_name();
+		std::string	get_nickname();
+		std::string	get_phone_number();
+		std::string	get_darkest_secret();
+		void		set_first_name(std::string first_name);
+		void		set_last_name(std::string last_name);
+		void		set_nickname(std::string nickname);
+		void		set_phone_number(std::string phone_number);
+		void		set_darkest_secret(std::string darkest_secret);
+	private:
 		std::string	first_name;
 		std::string	last_name;
 		std::string	nickname;

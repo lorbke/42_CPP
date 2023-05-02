@@ -6,7 +6,7 @@
 #    By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 16:37:03 by lorbke            #+#    #+#              #
-#    Updated: 2023/05/01 21:27:34 by lorbke           ###   ########.fr        #
+#    Updated: 2023/05/02 15:58:14 by lorbke           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,10 @@ CFLAGS		:= -Wall -Wextra -Werror
 CFLAGS		+= -std=c++98
 
 SRC_PATH	:= src
-SRC			:= PhoneBook.cpp main.cpp
+SRC			:= PhoneBook.cpp Contact.cpp main.cpp
 OBJ_PATH	:= obj
 OBJ			:= $(SRC:%.cpp=$(OBJ_PATH)/%.o)
-INC_PATH	:= include
+INC_PATH	:= inc
 
 VPATH		:= $(SRC_PATH)
 
