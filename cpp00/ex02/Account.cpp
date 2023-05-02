@@ -1,12 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Account.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/02 13:31:59 by lorbke            #+#    #+#             */
+/*   Updated: 2023/05/02 13:47:14 by lorbke           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "Account.hpp" // Account
 #include <iostream> // std::cout
 #include <ctime> // std::time, std::localtime
 
-// @todo revise code, understand everything better
-// @todo especially understand the tests.cpp file
-
-// @note why is this necessary?
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
