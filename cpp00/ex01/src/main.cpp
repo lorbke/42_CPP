@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 17:05:50 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/02 18:14:09 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/05/03 16:06:30 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,19 @@
 
 void	print_decor(const int width, const char fill)
 {
-	std::cout << std::right << std::setw(width) << std::setfill(fill) << "" << std::endl;
+	std::cout
+	<< std::right
+	<< std::setw(width)
+	<< std::setfill(fill)
+	<< "" << std::endl;
 }
 
 void	print_instructions(void)
 {
 	print_decor(WIDTH, '=');
 	std::cout << "PHONEBOOK" << std::endl;
-	std::cout << "Enter one of the following commands: ADD, SEARCH, EXIT" << std::endl;
+	std::cout << "Enter one of the following commands: ADD, SEARCH, EXIT"
+	<< std::endl;
 	print_decor(WIDTH, '=');
 }
 
@@ -65,7 +70,8 @@ void	display_string(const std::string str)
 
 void	display_contact_short(Contact contact, const int index)
 {
-	std::cout << std::setw(10) << std::setfill(' ') << std::right << index << "|";
+	std::cout << std::setw(10) << std::setfill(' ')
+	<< std::right << index << "|";
 	display_string(contact.get_first_name());
 	std::cout << "|";
 	display_string(contact.get_last_name());
@@ -79,23 +85,25 @@ void	display_contact_long(Contact contact)
 	std::cout << std::endl;
 	std::cout << std::right << "Contact details:" << std::endl;
 	print_decor(WIDTH, '-');
-	std::cout << std::right << "First name    : " << contact.get_first_name() << std::endl;
-	std::cout << std::right << "Last name     : " << contact.get_last_name() << std::endl;
-	std::cout << std::right << "Nickname      : " << contact.get_nickname() << std::endl;
-	std::cout << std::right << "Phone number  : " << contact.get_phone_number() << std::endl;
-	std::cout << std::right << "Darkest secret: " << contact.get_darkest_secret() << std::endl;
+	std::cout << std::right << "First name    : " << contact.get_first_name()
+	<< std::endl;
+	std::cout << std::right << "Last name     : " << contact.get_last_name()
+	<< std::endl;
+	std::cout << std::right << "Nickname      : " << contact.get_nickname()
+	<< std::endl;
+	std::cout << std::right << "Phone number  : " << contact.get_phone_number()
+	<< std::endl;
+	std::cout << std::right << "Darkest secret: "
+	<< contact.get_darkest_secret()
+	<< std::endl;
 	print_decor(WIDTH, '-');
 }
 
 void	search(PhoneBook phonebook)
 {
 	int	count = phonebook.get_max_contacts();
+	int	index = 0;
 
-	if (count == 0)
-	{
-		std::cout << "No contacts to display" << std::endl;
-		return ;
-	}
 	for (int i = 0; i < count; i++)
 	{
 		print_decor(WIDTH, '_');
@@ -103,33 +111,40 @@ void	search(PhoneBook phonebook)
 	}
 	print_decor(WIDTH, '_');
 
-	std::string	str;
 	std::cout << "Enter index of contact to display: ";
-	std::getline(std::cin, str);
-	
-	if (index >= 0 && index < count && str.c_str()[0] != '\0')
+	std::cin >> index;
+	if (std::cin.eof())
+		return ;
+	if (!std::cin.fail() && index >= 0 && index < count)
 		display_contact_long(phonebook.get_contact(index));
 	else
-		std::cout << "Invalid index" << std::endl;
+		std::cerr << "Invalid index" << std::endl;
 }
 
-// @todo fix EOF in search_function
+void	add(PhoneBook& phonebook)
+{
+	Contact	contact = get_new_contact();
+	phonebook.add_contact(contact);
+}
 
 int	main(void)
 {
 	PhoneBook	phonebook;
 	std::string	command;
 
+	print_instructions();
 	while (1)
 	{
-		print_instructions();
 		std::getline(std::cin, command);
 		if (command == "ADD")
-			phonebook.add_contact(get_new_contact());
+			add(phonebook);
 		else if (command == "SEARCH")
 			search(phonebook);
 		else if (command == "EXIT" || std::cin.eof())
 			break ;
+		else
+			print_instructions();
+		std::cin.clear();
 	}
 	return (0);
 }

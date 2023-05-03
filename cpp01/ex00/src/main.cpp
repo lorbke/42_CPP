@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/02 15:09:29 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/02 15:09:31 by lorbke           ###   ########.fr       */
+/*   Created: 2023/05/02 15:08:46 by lorbke            #+#    #+#             */
+/*   Updated: 2023/05/02 15:08:48 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanB.hpp"
-#include "Weapon.hpp"
-#include <string>
-#include <iostream>
+#include "Zombie.hpp" // Zombie class
 
-HumanB::HumanB(std::string name)
+int	main(void)
 {
-	this->weapon = NULL;
-	this->name = name;
-}
+	Zombie*	zombie = newZombie("Seppel");
+	zombie->announce();
 
-void	HumanB::setWeapon(Weapon& weapon)
-{
-	this->weapon = &weapon;
-}
+	randomChump("Gertrud");
+	randomChump("Hans");
 
-void	HumanB::attack(void)
-{
-	std::cout
-	<< this->name
-	<< " attacks with their "
-	<< this->weapon->getType()
-	<< std::endl;
+	delete zombie;
+	return (0);
 }

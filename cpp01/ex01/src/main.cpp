@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/02 15:09:29 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/02 15:09:31 by lorbke           ###   ########.fr       */
+/*   Created: 2023/05/02 15:08:32 by lorbke            #+#    #+#             */
+/*   Updated: 2023/05/02 15:08:34 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanB.hpp"
-#include "Weapon.hpp"
-#include <string>
-#include <iostream>
+#include "Zombie.hpp" // Zombie class
 
-HumanB::HumanB(std::string name)
+int	main(void)
 {
-	this->weapon = NULL;
-	this->name = name;
-}
+	int	count = 5;
+	Zombie*	zombies = zombieHorde(count, "Bob");
 
-void	HumanB::setWeapon(Weapon& weapon)
-{
-	this->weapon = &weapon;
-}
+	for (int i = 0; i < count; i++)
+		zombies[i].announce();
+	
+	// [] necessary because zombies refers to an array of objects
+	delete [] zombies;
 
-void	HumanB::attack(void)
-{
-	std::cout
-	<< this->name
-	<< " attacks with their "
-	<< this->weapon->getType()
-	<< std::endl;
+	return (0);
 }
