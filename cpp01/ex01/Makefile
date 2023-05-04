@@ -6,7 +6,7 @@
 #    By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 16:37:03 by lorbke            #+#    #+#              #
-#    Updated: 2023/05/02 15:14:12 by lorbke           ###   ########.fr        #
+#    Updated: 2023/05/04 18:08:07 by lorbke           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ CFLAGS		:= -Wall -Wextra -Werror
 CFLAGS		+= -std=c++98
 
 SRC_PATH	:= src
-SRC			:= main.cpp newZombie.cpp zombieHorde.cpp Zombie.cpp
+SRC			:= main.cpp zombieHorde.cpp Zombie.cpp
 OBJ_PATH	:= obj
 OBJ			:= $(SRC:%.cpp=$(OBJ_PATH)/%.o)
 INC_PATH	:= inc

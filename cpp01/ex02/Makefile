@@ -6,7 +6,7 @@
 #    By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 16:37:03 by lorbke            #+#    #+#              #
-#    Updated: 2023/04/17 21:56:07 by lorbke           ###   ########.fr        #
+#    Updated: 2023/05/04 18:25:11 by lorbke           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,9 +48,6 @@ re: fclean all
 
 # ______________________________________________________________ TESTING RULES #
 
-test:
-	@$(SHELL) tester/tester.sh
-
 run: all
 	@./$(NAME)
 
@@ -61,4 +58,4 @@ rawrun:
 val: all
 	@valgrind --leak-check=full ./$(NAME)
 
-.PHONY: all clean fclean re test run rawrun val
+.PHONY: all clean fclean re run rawrun val

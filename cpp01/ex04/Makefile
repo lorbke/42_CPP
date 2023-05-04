@@ -6,7 +6,7 @@
 #    By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 16:37:03 by lorbke            #+#    #+#              #
-#    Updated: 2023/04/17 21:56:07 by lorbke           ###   ########.fr        #
+#    Updated: 2023/05/04 22:01:12 by lorbke           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,11 +52,11 @@ test:
 	@$(SHELL) tester/tester.sh
 
 run: all
-	@./$(NAME) test hello bello
+	@./$(NAME) test catcatcatcatcat fox
 
 rawrun:
 	@$(CC) $(SRCS) -o $(NAME)
-	@./$(NAME) test hello bello
+	@./$(NAME) test catcatcatcatcat fox
 
 val: all
 	@valgrind --leak-check=full ./$(NAME) test " " "SPACE"

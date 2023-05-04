@@ -1,31 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.hpp                                         :+:      :+:    :+:   */
+/*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/02 15:09:33 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/02 15:09:35 by lorbke           ###   ########.fr       */
+/*   Created: 2023/05/02 15:09:42 by lorbke            #+#    #+#             */
+/*   Updated: 2023/05/04 21:33:47 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUMANB_HPP
-# define HUMANB_HPP
-
 #include "Weapon.hpp"
 #include <string>
+#include <iostream>
 
-class	HumanB
+Weapon::Weapon()
 {
-	public:
-		HumanB(std::string name);
-		void	setWeapon(Weapon& weapon);
-		void	attack(void);
+	std::cout << "Weapon constructor called" << std::endl;
+}
 
-	private:
-		std::string	name;
-		Weapon*		weapon;
-};
+Weapon::~Weapon()
+{
+	std::cout << "Weapon destructor called" << std::endl;
+}
 
-#endif
+Weapon::Weapon(std::string type)
+{
+	std::cout << "Weapon constructor called" << std::endl;
+	this->type = type;
+}
+
+const std::string&	Weapon::getType(void)
+{
+	return (this->type);
+}
+
+void	Weapon::setType(std::string type)
+{
+	this->type = type;
+}

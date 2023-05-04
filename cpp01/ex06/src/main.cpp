@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/02 15:09:22 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/02 15:09:23 by lorbke           ###   ########.fr       */
+/*   Created: 2023/05/02 15:08:22 by lorbke            #+#    #+#             */
+/*   Updated: 2023/05/04 22:58:59 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
-#include "Weapon.hpp"
-#include <string>
+#include "Harl.hpp"
 #include <iostream>
+#include <cstdlib>
+#include <string>
 
-HumanA::HumanA(std::string name, Weapon& weapon) : weapon(weapon)
+enum	Level
 {
-	this->name = name;
-}
+	DEBUG,
+	INFO,
+	WARNING,
+	ERROR
+};
 
-void	HumanA::attack(void)
+int	main(int argc, char **argv)
 {
-	std::cout
-	<< this->name
-	<< " attacks with their "
-	<< this->weapon.getType()
-	<< std::endl;
+	if (argc != 2)
+	{
+		std::cout << "Usage: ./harlFilter [DEBUG|INFO|WARNING|ERROR]" << std::endl;
+		return (EXIT_FAILURE);
+	}
+
+	Harl 	harl;
+	harl.complain(argv[1]);
+
+	return (EXIT_SUCCESS);
 }

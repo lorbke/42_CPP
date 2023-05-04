@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 15:09:50 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/02 15:09:54 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/05/04 21:48:56 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,12 @@ void	search_and_replace(std::ifstream& file_in, std::ofstream& file_out,
 int	main(int argc, char **argv)
 {
 	if (argc != 4)
+	{
+		std::cout
+		<< "Usage: ./search_and_replace <filename> <str to search> <str to replace>"
+		<< std::endl;
 		return (EXIT_FAILURE);
+	}
 
 	std::ifstream	file_in;
 	std::ofstream	file_out;

@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/02 15:08:22 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/02 15:08:29 by lorbke           ###   ########.fr       */
+/*   Created: 2023/05/02 15:09:22 by lorbke            #+#    #+#             */
+/*   Updated: 2023/05/04 21:34:26 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Harl.hpp"
-#include <iostream>
-#include <cstdlib>
+#include "HumanA.hpp"
+#include "Weapon.hpp"
 #include <string>
+#include <iostream>
 
-enum	Level
+HumanA::HumanA(std::string name, Weapon& weapon) : weapon(weapon)
 {
-	DEBUG,
-	INFO,
-	WARNING,
-	ERROR
-};
+	std::cout << "HumanA constructor called" << std::endl;
+	this->name = name;
+}
 
-int	main(int argc, char **argv)
+HumanA::~HumanA()
 {
-	if (argc != 2)
-	{
-		std::cout << "Usage: ./complain [DEBUG|INFO|WARNING|ERROR]" << std::endl;
-		return (EXIT_FAILURE);
-	}
+	std::cout << "HumanA destructor called" << std::endl;
+}
 
-	Harl 	harl;
-	harl.complain(argv[1]);
-
-	return (EXIT_SUCCESS);
+void	HumanA::attack(void)
+{
+	std::cout
+	<< this->name
+	<< " attacks with their "
+	<< this->weapon.getType()
+	<< std::endl;
 }
