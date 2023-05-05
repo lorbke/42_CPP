@@ -1,10 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/05 20:31:13 by lorbke            #+#    #+#             */
+/*   Updated: 2023/05/05 20:31:15 by lorbke           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "Fixed.hpp"
 #include <iostream>
-
-std::ostream&	operator<<(std::ostream& out, const Fixed& fixed);
-
-// @todo better understanding of the conversion from float to int
 
 int main( void )
 {

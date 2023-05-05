@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 20:26:37 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/05 20:26:38 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/05/05 20:30:09 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,7 @@ class Fixed
 		int					_value;
 		static int const	_fractionalBits = 8;
 };
+
+std::ostream&	operator<<(std::ostream& out, const Fixed& fixed);
 
 #endif

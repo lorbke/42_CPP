@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 20:26:21 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/05 20:26:24 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/05/05 20:30:04 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #define	WIDTH	400
 #define	HEIGHT	400
 
-std::ostream&	operator<<(std::ostream& out, const Fixed& fixed);
 bool 			bsp( Point const a, Point const b, Point const c, Point const point);
 
 void	draw_triangle(Point a, Point b, Point c)

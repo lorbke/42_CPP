@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 20:26:33 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/05 20:26:34 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/05/05 20:30:43 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ Fixed&	Fixed::operator*(Fixed const& multiplier)
 
 Fixed&	Fixed::operator/(Fixed const& divisor)
 {
-	// this->_value = roundf((float)this->_value / divisor.toFloat());
 	this->_value = this->_value / divisor.toFloat();
 	return (*this);
 }
