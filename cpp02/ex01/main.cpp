@@ -2,8 +2,6 @@
 #include "Fixed.hpp"
 #include <iostream>
 
-std::ostream&	operator<<(std::ostream& out, const Fixed& fixed);
-
 // @note why is the converted 42.42 = 42.4219?
 // has something to do with loss of precision
 // https://www.h-schmidt.net/FloatConverter/IEEE754.html

@@ -7,38 +7,38 @@
 class	Fixed
 {
 	public:
-		Fixed();
-		Fixed(const Fixed& original);
-		Fixed(const int raw);
-		Fixed(const float raw);
-		Fixed&	operator=(const Fixed& original);
-		bool	operator>(const Fixed& other);
-		bool	operator<(const Fixed& other);
-		bool	operator>=(const Fixed& other);
-		bool	operator<=(const Fixed& other);
-		bool	operator==(const Fixed& other);
-		bool	operator!=(const Fixed& other);
-		Fixed&	operator+(const Fixed& addend);
-		Fixed&	operator-(const Fixed& subtrahend);
-		Fixed&	operator*(const Fixed& multiplier);
-		Fixed&	operator/(const Fixed& divisor);
-		Fixed&	operator++(void);
-		Fixed	operator++(int postfix __attribute__ ((unused)));
-		Fixed&	operator--(void);
-		Fixed	operator--(int postfix __attribute__ ((unused)));
+						Fixed();
+						Fixed(Fixed const& original);
+						Fixed(int const raw);
+						Fixed(float const raw);
+		Fixed&			operator=(Fixed const& original);
+		bool			operator>(Fixed const& other);
+		bool			operator<(Fixed const& other);
+		bool			operator>=(Fixed const& other);
+		bool			operator<=(Fixed const& other);
+		bool			operator==(Fixed const& other);
+		bool			operator!=(Fixed const& other);
+		Fixed&			operator+(Fixed const& addend);
+		Fixed&			operator-(Fixed const& subtrahend);
+		Fixed&			operator*(Fixed const& multiplier);
+		Fixed&			operator/(Fixed const& divisor);
+		Fixed&			operator++(void);
+		Fixed			operator++(int postfix __attribute__ ((unused)));
+		Fixed&			operator--(void);
+		Fixed			operator--(int postfix __attribute__ ((unused)));
 		static Fixed&	min(Fixed& a, Fixed& b);
 		static Fixed&	max(Fixed& a, Fixed& b);
-		static Fixed&	min(const Fixed& a, const Fixed& b);
-		static Fixed&	max(const Fixed& a, const Fixed& b);
-		~Fixed();
-		int	getRawBits(void) const;
-		void	setRawBits(const int raw);
-		float	toFloat(void) const;
-		int		toInt(void) const;
+		static Fixed&	min(Fixed const& a, Fixed const& b);
+		static Fixed&	max(Fixed const& a, Fixed const& b);
+						~Fixed();
+		int				getRawBits(void) const;
+		void			setRawBits(int const raw);
+		float			toFloat(void) const;
+		int				toInt(void) const;
 
 	private:
 		int					_value;
-		static const int	_fractionalBits = 8;
+		static int const	_fractionalBits = 8;
 };
 
 #endif

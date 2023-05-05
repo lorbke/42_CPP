@@ -20,8 +20,9 @@ CC			:= c++
 CFLAGS		:= -Wall -Wextra -Werror
 CFLAGS		+= -std=c++98
 
-SRCS		:= main.cpp Fixed.cpp Point.cpp bsp.cpp
-OBJS		:= $(SRCS:.cpp=.o)
+SRC			:= main.cpp Fixed.cpp Point.cpp bsp.cpp
+OBJ_PATH	:= obj
+OBJ			:= $(SRC:%.cpp=$(OBJ_PATH)/%.o)
 
 # __________________________________________________________________ LIBRARIES #
 
@@ -41,35 +42,30 @@ GREEN		:= \033[0;32m
 
 # ______________________________________________________________________ RULES #
 
+.PHONY: all clean fclean re run val
+
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(MLX_LINK) $(GL_LINK) $(OBJS) -o $(NAME)
+$(NAME): $(OBJ_PATH) $(OBJ)
+	$(CC) $(CFLAGS) $(MLX_LINK) $(GL_LINK) $(OBJ) -o $(NAME)
 
-%.o: %.cpp
+$(OBJ_PATH):
+	@mkdir -p $(OBJ_PATH)
+
+$(OBJ_PATH)/%.o: %.cpp
 	$(CC) $(CFLAGS) $(MLX_INC) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	rm -rf $(OBJ_PATH)
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
 
-# ______________________________________________________________ TESTING RULES #
-
-test:
-	@$(SHELL) tester/tester.sh
-
 run: all
-	@./$(NAME)
-
-rawrun:
-	@$(CC) $(SRCS) -o $(NAME)
 	@./$(NAME)
 
 val: all
 	@valgrind --leak-check=full ./$(NAME)
 
-.PHONY: all clean fclean re test run rawrun val

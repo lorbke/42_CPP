@@ -2,8 +2,6 @@
 #include "Fixed.hpp"
 #include <iostream>
 
-// @note subject suggests printing statements, necessary?
-
 int main( void )
 {
 	Fixed a;

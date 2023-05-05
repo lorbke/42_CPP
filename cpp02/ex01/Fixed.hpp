@@ -7,20 +7,22 @@
 class	Fixed
 {
 	public:
-		Fixed();
-		Fixed(const Fixed& original);
-		Fixed(const int raw);
-		Fixed(const float raw);
-		Fixed&	operator=(const Fixed& original);
-		~Fixed();
-		int	getRawBits(void) const;
-		void	setRawBits(const int raw);
+				Fixed();
+				Fixed(Fixed const& original);
+				Fixed(int const raw);
+				Fixed(float const raw);
+				Fixed&	operator=(Fixed const& original);
+				~Fixed();
+		int		getRawBits(void) const;
+		void	setRawBits(int const raw);
 		float	toFloat(void) const;
 		int		toInt(void) const;
 
 	private:
 		int					_value;
-		static const int	_fractionalBits = 8;
+		static int const	_fractionalBits = 8;
 };
+
+std::ostream&	operator<<(std::ostream& out, Fixed const& fixed);
 
 #endif
