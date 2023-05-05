@@ -6,7 +6,7 @@
 #    By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 16:37:03 by lorbke            #+#    #+#              #
-#    Updated: 2023/05/04 22:01:12 by lorbke           ###   ########.fr        #
+#    Updated: 2023/05/04 23:27:10 by lorbke           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ test:
 	@$(SHELL) tester/tester.sh
 
 run: all
-	@./$(NAME) test catcatcatcatcat fox
+	@./$(NAME) test fox cat
 
 rawrun:
 	@$(CC) $(SRCS) -o $(NAME)

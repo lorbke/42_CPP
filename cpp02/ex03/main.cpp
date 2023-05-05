@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 20:26:21 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/05 20:30:04 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/05/05 21:03:37 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #define	WIDTH	400
 #define	HEIGHT	400
 
-bool 			bsp( Point const a, Point const b, Point const c, Point const point);
+bool	bsp(Point const a, Point const b, Point const c, Point const point);
 
 void	draw_triangle(Point a, Point b, Point c)
 {
@@ -40,10 +40,16 @@ void	draw_triangle(Point a, Point b, Point c)
 // @todo add self-assignment checks in all copy-assignment operators because of memory errors
 int	main( void )
 {
-	Point	a(0, 0);
-	Point	b(0, 400);
-	Point	c(400, 0);
+	Point	a1(0, 0);
+	Point	b1(0, 400);
+	Point	c1(400, 0);
 
-	draw_triangle(a, b, c);
+	Point	b2(0, 0);
+	Point	c2(0, 400);
+	Point	a2(400, 0);
+
+	draw_triangle(a2, b2, c2);
+	draw_triangle(a1, b1, c1);
+
 	return 0;
 }

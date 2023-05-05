@@ -6,7 +6,7 @@
 #    By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 16:37:03 by lorbke            #+#    #+#              #
-#    Updated: 2023/05/05 20:19:05 by lorbke           ###   ########.fr        #
+#    Updated: 2023/05/05 20:39:07 by lorbke           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,8 +58,10 @@ $(OBJ_PATH)/%.o: %.cpp
 	$(CC) $(CFLAGS) $(MLX_INC) -c $< -o $@
 
 libmlx:
-	cmake -S $(MLX_PATH) -B $(MLX_PATH)/build
-	make -C $(MLX_PATH)/build
+	@if [ ! -d $(MLX_PATH)/build ]; then \
+		cmake -S $(MLX_PATH) -B $(MLX_PATH)/build; \
+		make -C $(MLX_PATH)/build; \
+	fi
 
 clean:
 	rm -rf $(OBJ_PATH)
@@ -75,4 +77,3 @@ run: all
 
 val: all
 	@valgrind --leak-check=full ./$(NAME)
-
