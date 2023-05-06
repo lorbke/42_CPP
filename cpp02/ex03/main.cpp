@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 20:26:21 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/06 22:33:43 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/05/06 22:38:54 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	draw_triangle(Point a, Point b, Point c)
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 }
+
+// @todo makefile kinda relinking
 
 int	main( void )
 {
