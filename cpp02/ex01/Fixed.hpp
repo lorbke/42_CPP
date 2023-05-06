@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 20:31:29 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/05 20:31:31 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/05/06 19:46:15 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class	Fixed
 				Fixed(Fixed const& original);
 				Fixed(int const raw);
 				Fixed(float const raw);
-				Fixed&	operator=(Fixed const& original);
+		Fixed&	operator=(Fixed const& original);
 				~Fixed();
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);

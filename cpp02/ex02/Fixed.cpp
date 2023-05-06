@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 20:31:22 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/05 20:31:24 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/05/06 22:25:28 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,58 +40,60 @@ Fixed&	Fixed::operator=(Fixed const& original)
 	return (*this);
 }
 
-bool	Fixed::operator>(Fixed const& other)
+bool	Fixed::operator>(Fixed const& other) const
 {
 	return (this->_value > other._value);
 }
 
-bool	Fixed::operator<(Fixed const& other)
+bool	Fixed::operator<(Fixed const& other) const
 {
 	return (this->_value < other._value);
 }
 
-bool	Fixed::operator>=(Fixed const& other)
+bool	Fixed::operator>=(Fixed const& other) const
 {
 	return (this->_value >= other._value);
 }
 
-bool	Fixed::operator<=(Fixed const& other)
+bool	Fixed::operator<=(Fixed const& other) const
 {
 	return (this->_value <= other._value);
 }
 
-bool	Fixed::operator==(Fixed const& other)
+bool	Fixed::operator==(Fixed const& other) const
 {
 	return (this->_value == other._value);
 }
 
-bool	Fixed::operator!=(Fixed const& other)
+bool	Fixed::operator!=(Fixed const& other) const
 {
 	return (this->_value != other._value);
 }
 
-Fixed&	Fixed::operator+(Fixed const& addend)
+Fixed	Fixed::operator+(Fixed const& addend) const
 {
-	this->_value += addend._value;
-	return (*this);
+	Fixed	result;
+	result._value = this->_value + addend._value;
+	return (result);
 }
 
-Fixed&	Fixed::operator-(Fixed const& subtrahend)
+Fixed	Fixed::operator-(Fixed const& subtrahend) const
 {
-	this->_value -= subtrahend._value;
-	return (*this);
+	Fixed	result;
+	result._value = this->_value - subtrahend._value;
+	return (result);
 }
 
-Fixed&	Fixed::operator*(Fixed const& multiplier)
+Fixed	Fixed::operator*(Fixed const& multiplier) const
 {
-	this->_value = this->_value * multiplier.toFloat();
-	return (*this);
+	Fixed	result(this->toFloat() * multiplier.toFloat());
+	return (result);
 }
 
-Fixed&	Fixed::operator/(Fixed const& divisor)
+Fixed	Fixed::operator/(Fixed const& divisor) const
 {
-	this->_value = this->_value / divisor.toFloat();
-	return (*this);
+	Fixed	result(this->toFloat() / divisor.toFloat());
+	return (result);
 }
 
 Fixed& Fixed::operator++(void)
@@ -123,32 +125,18 @@ Fixed	Fixed::operator--(int postfix __attribute__ ((unused)))
 	return (temp);
 }
 
-Fixed&	Fixed::min(Fixed& a, Fixed& b)
+Fixed const&	Fixed::min(Fixed const& a, Fixed const& b)
 {
 	if (a < b)
 		return (a);
 	return (b);
 }
 
-Fixed&	Fixed::max(Fixed& a, Fixed& b)
+Fixed const&	Fixed::max(Fixed const& a, Fixed const& b)
 {
 	if (a > b)
 		return (a);
 	return (b);
-}
-
-Fixed&	Fixed::min(Fixed const& a, Fixed const& b)
-{
-	if ((Fixed&)a < b)
-		return (Fixed&)(a);
-	return (Fixed&)(b);
-}
-
-Fixed&	Fixed::max(Fixed const& a, Fixed const& b)
-{
-	if ((Fixed&)a > b)
-		return (Fixed&)(a);
-	return (Fixed&)(b);
 }
 
 Fixed::~Fixed()

@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 20:26:21 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/06 17:12:47 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/05/06 22:33:43 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,3 +53,14 @@ int	main( void )
 
 	return 0;
 }
+
+// int	main(void)
+// {
+// 	Point a = Point(0.0f, 0.0f);
+// 	Point b = Point(1.0f, 1.0f);
+// 	Point c = Point(-1.0f, 1.0f);
+// 	Point test = Point(1.0f, 0.01f);
+
+// 	std::cout << "bsp(a, b, c, test): " << bsp(a, b, c, test)	<< std::endl;
+// 	return 0;
+// }
