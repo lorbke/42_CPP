@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 20:26:21 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/05 21:03:37 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/05/06 17:12:47 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ void	draw_triangle(Point a, Point b, Point c)
 		}	
 	}
 	mlx_loop(mlx);
+	mlx_terminate(mlx);
 }
 
-// @todo add self-assignment checks in all copy-assignment operators because of memory errors
 int	main( void )
 {
-	Point	a1(0, 0);
+	Point	a1(600, 0);
 	Point	b1(0, 400);
 	Point	c1(400, 0);
 
