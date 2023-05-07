@@ -6,22 +6,22 @@
 #    By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 16:37:03 by lorbke            #+#    #+#              #
-#    Updated: 2023/04/17 21:56:07 by lorbke           ###   ########.fr        #
+#    Updated: 2023/05/07 18:13:44 by lorbke           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # __________________________________________________________________ VARIABLES #
 
-SHELL	:= /bin/bash
+SHELL		:= /bin/bash
 
-NAME	:= claptrap
+NAME		:= claptrap
 
-CC		:= c++
-CFLAGS	:= -Wall -Wextra -Werror
-CFLAGS	+= -std=c++98
+CXX			:= c++
+CXXFLAGS	:= -Wall -Wextra -Werror
+CXXFLAGS	+= -std=c++98
 
-SRCS	:= main.cpp ClapTrap.cpp
-OBJS	:= $(SRCS:.cpp=.o)
+SRCS		:= main.cpp ClapTrap.cpp
+OBJS		:= $(SRCS:.cpp=.o)
 
 # _____________________________________________________________________ COLORS #
 
@@ -33,10 +33,7 @@ GREEN	:= \033[0;32m
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-
-%.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 	rm -f $(OBJS)
@@ -55,7 +52,7 @@ run: all
 	@./$(NAME)
 
 rawrun:
-	@$(CC) $(SRCS) -o $(NAME)
+	@$(CXX) $(SRCS) -o $(NAME)
 	@./$(NAME)
 
 val: all

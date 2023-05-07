@@ -6,15 +6,45 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 18:21:23 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/06 18:21:24 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/05/07 18:32:13 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 #include <iostream>
 
+#define HEALTH 10
+#define ENERGY 10
+#define ATTACK 0
+
+static bool	check_health(const std::string& name, int health)
+{
+	if (health <= 0)
+	{
+		std::cout << "ClapTrap "
+		<< name
+		<< " has no health left!"
+		<< std::endl;
+		return (false);
+	}
+	return (true);
+}
+
+static bool	check_energy(const std::string& name, int energy)
+{
+	if (energy <= 0)
+	{
+		std::cout << "ClapTrap "
+		<< name
+		<< " has no energy left!"
+		<< std::endl;
+		return (false);
+	}
+	return (true);
+}
+
 ClapTrap::ClapTrap(const std::string& name)
-	: _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+	: _name(name), _hitPoints(HEALTH), _energyPoints(ENERGY), _attackDamage(ATTACK)
 {
 	std::cout << "ClapTrap "
 	<< this->_name
@@ -50,7 +80,8 @@ ClapTrap::~ClapTrap()
 
 void	ClapTrap::attack(const std::string& target)
 {
-	if (this->_energyPoints <= 0 || this->_hitPoints <= 0)
+	if (!check_energy(this->_name, this->_energyPoints)
+		|| !check_health(this->_name, this->_hitPoints))
 		return ;
 	this->_energyPoints--;
 	std::cout << "ClapTrap "
@@ -64,8 +95,18 @@ void	ClapTrap::attack(const std::string& target)
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
-	if (this->_energyPoints <= 0 || this->_hitPoints <= 0)
+	if (!check_energy(this->_name, this->_energyPoints)
+		|| !check_health(this->_name, this->_hitPoints))
 		return ;
+	if (this->_hitPoints + amount > HEALTH)
+	{
+		std::cout << "ClapTrap "
+		<< this->_name
+		<< " already has full health!"
+		<< std::endl;
+		return ;
+	}
+	this->_hitPoints += amount;
 	this->_energyPoints--;
 	std::cout << "ClapTrap "
 	<< this->_name
@@ -76,7 +117,7 @@ void	ClapTrap::beRepaired(unsigned int amount)
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
-	if (this->_energyPoints <= 0 || this->_hitPoints <= 0)
+	if (!check_health(this->_name, this->_hitPoints))
 		return ;
 	this->_hitPoints -= amount;
 	std::cout << "ClapTrap "

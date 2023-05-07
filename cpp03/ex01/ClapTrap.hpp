@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/06 18:21:01 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/06 18:21:03 by lorbke           ###   ########.fr       */
+/*   Created: 2023/05/06 18:21:26 by lorbke            #+#    #+#             */
+/*   Updated: 2023/05/07 18:35:36 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,7 @@ class ClapTrap
 		void		attack(const std::string& target);
 		void		takeDamage(unsigned int amount);
 		void		beRepaired(unsigned int amount);
-		std::string	getName(void) const;
-		int			getHitPoints(void) const;
-		int			getEnergyPoints(void) const;
-		int			getAttackDamage(void) const;
-		void		setName(const std::string& name);
-		void		setHitPoints(int hitPoints);
-		void		setEnergyPoints(int energyPoints);
-		void		setAttackDamage(int attackDamage);
-	private:
+	protected:
 		std::string	_name;
 		int			_hitPoints;
 		int			_energyPoints;
