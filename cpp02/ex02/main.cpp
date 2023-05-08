@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 20:31:13 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/06 22:22:03 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/05/08 13:18:03 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,13 @@ int main( void )
 	std::cout << Fixed::max( c, b ) << std::endl;
 	std::cout << Fixed::min( c, b ) << std::endl;
 	std::cout << std::endl;
+
+	std::cout << "conversion tests:" << std::endl;
+	std::cout << c << std::endl;
+	std::cout << c.toFloat() << std::endl;
+	std::cout << b << std::endl;
+	std::cout << b.toInt() << std::endl;
+	std::cout << b.toFloat() << std::endl;
+
 	return 0;
 }

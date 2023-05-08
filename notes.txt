@@ -97,6 +97,12 @@
 		- virtual
 			- a virtual member of a class can be overridden by a derived class
 			- this ensures that there is no ambiguity when calling a function on a derived class
+			- pure virtual
+				- member function of class is left empty by setting it to 0 in the class definition
+				- derived class must override the function or it will be abstract
+				- abstract class
+					- a class with at least one pure virtual function
+					- cannot be instantiated
 		- override
 			- overrides a virtual function
 		- static

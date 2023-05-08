@@ -6,7 +6,7 @@
 #    By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 16:37:03 by lorbke            #+#    #+#              #
-#    Updated: 2023/05/08 23:14:42 by lorbke           ###   ########.fr        #
+#    Updated: 2023/05/07 18:13:44 by lorbke           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,44 +14,29 @@
 
 SHELL		:= /bin/bash
 
-NAME		:= static
+NAME		:= claptrap
 
 CXX			:= c++
 CXXFLAGS	:= -Wall -Wextra -Werror
 CXXFLAGS	+= -std=c++98
 
-SRC_DIR		:= src
-SRC			:= main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp \
-				Brain.cpp WrongCat.cpp
-OBJ_DIR		:= obj
-OBJ			:= $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
-
-INC_DIR		:= inc
-
-VPATH		:= $(SRC_DIR)
+SRCS		:= main.cpp ClapTrap.cpp
+OBJS		:= $(SRCS:.cpp=.o)
 
 # _____________________________________________________________________ COLORS #
 
-RED			:= \033[0;31m
-GREEN		:= \033[0;32m
-RESET		:= \033[0m
+RED		:= \033[0;31m
+GREEN	:= \033[0;32m
 
 # ______________________________________________________________________ RULES #
 
 all: $(NAME)
 
-$(NAME): $(OBJ_DIR) $(OBJ)
-	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
-	@echo -e "$(GREEN)$(NAME) [OK]$(RESET)"
-
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
-
-$(OBJ_DIR)/%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -I$(INC_DIR) -c $< -o $@
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 clean:
-	rm -rf $(OBJ_DIR)
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
@@ -60,11 +45,14 @@ re: fclean all
 
 # ______________________________________________________________ TESTING RULES #
 
+test:
+	@$(SHELL) tester/tester.sh
+
 run: all
 	@./$(NAME)
 
 rawrun:
-	@$(CXX) $(SRC) -o $(NAME)
+	@$(CXX) $(SRCS) -o $(NAME)
 	@./$(NAME)
 
 val: all
