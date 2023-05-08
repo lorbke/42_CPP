@@ -1,28 +1,46 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/08 14:57:29 by lorbke            #+#    #+#             */
+/*   Updated: 2023/05/08 18:24:48 by lorbke           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 #include <iostream>
 
-// @note copy assignment operator?
-// @todo make ClapTrap private attributes protected instead, this way no setters and getters are needed, apply on all exercises
-// subject specifies private attributes in ex00 though
+#define RESET "\033[0m"
+#define GREEN "\033[32m"
 
 int	main(void)
 {
-	DiamondTrap	Bill("Bill");
-	std::cout << std::endl;
+	DiamondTrap	Steve("Steve");
+	DiamondTrap	Stewie("Stewie");
 
-	DiamondTrap	Bob("Bob");
-	std::cout << std::endl;
+	std::cout << std::endl 
+	<< GREEN "member functions test:" RESET << std::endl;
+	Steve.attack("Tom");
+	Stewie.takeDamage(1);
+	Stewie.beRepaired(1);
 
-	Bill.whoAmI();
-	std::cout << std::endl;
+	std::cout << std::endl
+	<< GREEN "no health test:" RESET << std::endl;
+	Steve.takeDamage(100);
+	Steve.takeDamage(1);
 
-	Bob.attack("Bill");
-	std::cout << Bob.getEnergyPoints() << std::endl;
-	std::cout << Bob.getHitPoints() << std::endl;
-	Bob.takeDamage(10);
-	Bob.beRepaired(10);
-	std::cout << std::endl;
+	std::cout << std::endl
+	<< GREEN "no energy test:" RESET << std::endl;
+	for (int i = 0; i < 50; i++)
+		Stewie.attack("Steve");
 
+	std::cout << std::endl
+	<< GREEN "whoAmI test:" RESET << std::endl;
+	Steve.whoAmI();
+
+	std::cout << std::endl;
 	return (0);
 }

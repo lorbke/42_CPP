@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 18:21:23 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/07 18:32:13 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/05/08 14:49:22 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,6 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	if (!check_energy(this->_name, this->_energyPoints)
 		|| !check_health(this->_name, this->_hitPoints))
 		return ;
-	if (this->_hitPoints + amount > HEALTH)
-	{
-		std::cout << "ClapTrap "
-		<< this->_name
-		<< " already has full health!"
-		<< std::endl;
-		return ;
-	}
 	this->_hitPoints += amount;
 	this->_energyPoints--;
 	std::cout << "ClapTrap "
