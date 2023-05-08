@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 14:40:53 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/08 17:27:06 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/05/08 18:46:47 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 class FragTrap : virtual public ClapTrap
 {
 	public:
+					FragTrap();
 					FragTrap(std::string name);
 					FragTrap(const FragTrap& src);
 		FragTrap&	operator=(const FragTrap& src);

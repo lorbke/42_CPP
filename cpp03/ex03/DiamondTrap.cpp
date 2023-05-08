@@ -6,20 +6,26 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 14:57:38 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/08 18:23:18 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/05/08 18:48:49 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 #include <iostream>
 
-DiamondTrap::DiamondTrap(std::string name)
-	: ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name),
-	_name(name)
+DiamondTrap::DiamondTrap() : ClapTrap(), ScavTrap(),
+	FragTrap(), _name("default")
 {
-	ScavTrap	temp_scav(name);
+	std::cout << "DiamondTrap "
+	<< this->_name
+	<< " has been created!" << std::endl;
+}
 
-	this->ClapTrap::_energyPoints = temp_scav.ScavTrap::getEnergyPoints();
+DiamondTrap::DiamondTrap(std::string name)
+	: ClapTrap(name + "_clap_name"),
+	ScavTrap(name), FragTrap(name), _name(name)
+{
+	this->ClapTrap::_energyPoints = 50;
 	std::cout << "DiamondTrap "
 	<< this->_name
 	<< " has been created!" << std::endl;

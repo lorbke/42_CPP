@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 18:21:23 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/08 17:40:59 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/05/08 18:46:32 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,15 @@ static bool	check_energy(const std::string& name, int energy)
 		return (false);
 	}
 	return (true);
+}
+
+ClapTrap::ClapTrap()
+	: _name("default"), _hitPoints(HEALTH),
+	_energyPoints(ENERGY), _attackDamage(ATTACK)
+{
+	std::cout << "ClapTrap "
+	<< this->_name
+	<< " has been created!" << std::endl;
 }
 
 ClapTrap::ClapTrap(const std::string& name)

@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 18:21:26 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/07 18:35:36 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/05/08 18:28:31 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 class ClapTrap
 {
 	public:
+					ClapTrap();
 					ClapTrap(const std::string& name);
 					ClapTrap(const ClapTrap& src);
 		ClapTrap&	operator=(const ClapTrap& src);

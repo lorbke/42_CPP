@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 14:57:44 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/08 17:20:14 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/05/08 18:27:03 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 class DiamondTrap : public ScavTrap, public FragTrap
 {
 	public:
+						DiamondTrap();
 						DiamondTrap(std::string name);
 						~DiamondTrap();
 		DiamondTrap&	operator=(DiamondTrap const &src);

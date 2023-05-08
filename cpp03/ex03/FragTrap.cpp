@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 14:40:57 by lorbke            #+#    #+#             */
-/*   Updated: 2023/05/08 17:40:35 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/05/08 18:47:39 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,16 @@
 #define HEALTH 100
 #define ENERGY 100
 #define DAMAGE 30
+
+FragTrap::FragTrap() : ClapTrap()
+{
+	std::cout << "FragTrap "
+	<< this->_name
+	<< " has been created!" << std::endl;
+	this->_hitPoints = HEALTH;
+	this->_energyPoints = ENERGY;
+	this->_attackDamage = DAMAGE;
+}
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
