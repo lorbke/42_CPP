@@ -6,7 +6,7 @@
 #    By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 16:37:03 by lorbke            #+#    #+#              #
-#    Updated: 2023/05/06 22:36:39 by lorbke           ###   ########.fr        #
+#    Updated: 2023/05/08 13:13:18 by lorbke           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,11 +44,15 @@ GREEN		:= \033[0;32m
 
 # ______________________________________________________________________ RULES #
 
-.PHONY: all build_mlx clean fclean re run val
+.PHONY: all clean fclean re run val
 
-all: build_mlx $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJ_PATH) $(OBJ)
+	@if [ ! -d $(MLX_PATH)/build ]; then \
+		cmake -S $(MLX_PATH) -B $(MLX_PATH)/build; \
+		make -C $(MLX_PATH)/build; \
+	fi
 	$(CC) $(CFLAGS) $(MLX_LINK) $(GL_LINK) $(OBJ) -o $(NAME)
 
 $(OBJ_PATH):
@@ -56,12 +60,6 @@ $(OBJ_PATH):
 
 $(OBJ_PATH)/%.o: %.cpp
 	$(CC) $(CFLAGS) $(MLX_INC) -c $< -o $@
-
-build_mlx:
-	@if [ ! -d $(MLX_PATH)/build ]; then \
-		cmake -S $(MLX_PATH) -B $(MLX_PATH)/build; \
-		make -C $(MLX_PATH)/build; \
-	fi
 
 clean:
 	rm -rf $(OBJ_PATH)
