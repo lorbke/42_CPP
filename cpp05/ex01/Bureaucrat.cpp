@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include <string>
 #include <iostream>
 
@@ -41,6 +42,16 @@ void Bureaucrat::decrementGrade() {
     if (_grade >= GRADE_MAX)
         throw GradeTooLowException();
     _grade++;
+}
+
+void Bureaucrat::signForm(Form& form) const {
+    try {
+        form.beSigned(*this);
+        std::cout << _name << " signed " << form.getName() << std::endl;
+    }
+    catch(const std::exception& e) {
+        std::cout << _name << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
+    }
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& b) {
