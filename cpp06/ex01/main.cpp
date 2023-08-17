@@ -8,6 +8,7 @@ void test_one() {
     uintptr_t ptr;
 
     d.data = "Hello, world!";
+    std::cout << "original:     " << d.data << std::endl;
     ptr = Serializer::serialize(&d);
     std::cout << "serialized:   " << ptr << std::endl;
     Data *temp = Serializer::deserialize(ptr);

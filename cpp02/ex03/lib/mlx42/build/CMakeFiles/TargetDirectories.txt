@@ -1,0 +1,3 @@
+/Users/luca/Desktop/42/Coding/42_CPP/cpp02/ex03/lib/mlx42/build/CMakeFiles/mlx42.dir
+/Users/luca/Desktop/42/Coding/42_CPP/cpp02/ex03/lib/mlx42/build/CMakeFiles/edit_cache.dir
+/Users/luca/Desktop/42/Coding/42_CPP/cpp02/ex03/lib/mlx42/build/CMakeFiles/rebuild_cache.dir

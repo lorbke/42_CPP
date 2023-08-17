@@ -40,6 +40,7 @@ void test_two() {
 // @todo replace with fixed files from ex02 if changes were made
 // @todo understand function pointer array syntax better
 // @todo do an exception instead of regular error?
+// @todo check leaks
 
 int main(void) {
     test_one();

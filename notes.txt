@@ -112,3 +112,9 @@
 			- refers to the current instance of the class
 		- new
 			- creates new instance of an object on the heap
+
+	--------------Casting-------------------
+
+		- static_cast to cast upwards in class hierarchy
+		- dynamic_cast to cast downwards in class hierarchy (and seldomly sideways)
+			- for this to work, base class must have at least one virtual function (polymporphism)
