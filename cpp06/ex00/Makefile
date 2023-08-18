@@ -34,7 +34,7 @@ $(NAME): $(OBJ_DIR) $(OBJ)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-$(OBJ_DIR)/%.o: %.cpp
+$(OBJ_DIR)/%.o: %.cpp ScalarConverter.hpp
 	$(CXX) $(CXXFLAGS) -I$(INC_DIR) -c $< -o $@
 
 clean:
@@ -48,7 +48,15 @@ re: fclean all
 # ______________________________________________________________ TESTING RULES #
 
 run: all
-	@./$(NAME)
+	./$(NAME) 0
+	@echo --------------------
+	./$(NAME) 0.0f
+	@echo --------------------
+	./$(NAME) nan
+	@echo --------------------
+	./$(NAME) 42.0f
+	@echo --------------------
+	./$(NAME) 42.42
 
 rawrun:
 	@$(CXX) $(SRC) -o $(NAME)
