@@ -1,6 +1,8 @@
 #include "ScalarConverter.hpp"
 #include <iostream>
 
+// @todo handle overflows
+// @todo kinda not following the subject since type is not detected
 int main(int argc, char **argv) {
 	// @todo input parsing
 	if (argc != 2)
