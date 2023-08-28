@@ -11,7 +11,7 @@ class ScalarConverter {
 		ScalarConverter& operator=(const ScalarConverter& obj);
 
 	public:
-		static void convert(std::string literal);
+		static void convert(const std::string& literal);
 };
 
 #endif  // SCALARCONVERTER_HPP_
