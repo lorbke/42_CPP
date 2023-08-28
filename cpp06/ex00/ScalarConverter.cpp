@@ -14,17 +14,18 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& obj) {
 	return *this;
 }
 
+
+
 void ScalarConverter::convert(std::string literal) {
 	char   c = 0;
 	int    i = 0;
 	float  f = 0;
 	double d = 0;
-	std::istringstream stream(literal);
 
-	stream >> i;
+	std::istringstream(literal) >> i;
 	c = i;
-	stream >> f;
-	stream >> d;
+	std::istringstream(literal) >> f;
+	std::istringstream(literal) >> d;
 
 	std::cout << c << std::endl;
 	std::cout << i << std::endl;
@@ -41,7 +42,7 @@ void ScalarConverter::convert(std::string literal) {
 // int errors
 
 // float errors
-	// 
+	//
 // -inff
 // +inff
 // nanf
@@ -50,3 +51,5 @@ void ScalarConverter::convert(std::string literal) {
 // -inf
 // +inf
 // nan
+
+// overflows should be handled with message
