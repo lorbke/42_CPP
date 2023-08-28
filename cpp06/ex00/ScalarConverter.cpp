@@ -66,24 +66,6 @@ void printNan() {
 	std::cout << PREFIX_DOUBLE << "nan" << std::endl;
 }
 
-int strToInt(const std::string& literal) {
-	int i = 0;
-	std::istringstream(literal) >> i;
-	return i;
-}
-
-float strToFloat(const std::string& literal) {
-	float f = 0;
-	std::istringstream(literal) >> f;
-	return f;
-}
-
-double strToDouble(const std::string& literal) {
-	double d = 0;
-	std::istringstream(literal) >> d;
-	return d;
-}
-
 void ScalarConverter::convert(const std::string& literal) {
 	if (literal == "inf" || literal == "+inf"
 		|| literal == "inff" || literal == "+inff")
@@ -93,11 +75,12 @@ void ScalarConverter::convert(const std::string& literal) {
 	else if (literal == "nan" || literal == "nanf")
 		printNan();
 	else {
-		// if (!literal.find("."))
-		// 	literal.append(std::string(".0"));
-		int    i = strToInt(literal);
-		float  f = strToFloat(literal);
-		double d = strToDouble(literal);
+		int    i = 0;
+		float  f = 0;
+		double d = 0;
+		std::istringstream(literal) >> i;
+		std::istringstream(literal) >> f;
+		std::istringstream(literal) >> d;
 		printScalars(literal, i, f, d);
 	}
 }
