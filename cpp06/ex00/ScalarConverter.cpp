@@ -3,6 +3,11 @@
 #include <iostream>
 #include <sstream>
 
+#define PREFIX_CHAR   "char:   "
+#define PREFIX_INT    "int:    "
+#define PREFIX_FLOAT  "float:  "
+#define PREFIX_DOUBLE "double: "
+
 ScalarConverter::ScalarConverter() {}
 
 ScalarConverter::~ScalarConverter() {}
@@ -14,42 +19,71 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& obj) {
 	return *this;
 }
 
-void print_scalars(const char c, const int i, const float f, const double d) {
-	std::cout << c << std::endl;
-	std::cout << i << std::endl;
-	std::cout << f << std::endl;
-	std::cout << d << std::endl;
+void printScalars(const char c, const int i, const float f, const double d) {
+	std::cout << PREFIX_CHAR   << c << std::endl;
+	std::cout << PREFIX_INT    << i << std::endl;
+	std::cout << PREFIX_FLOAT  << f << std::endl;
+	std::cout << PREFIX_DOUBLE << d << std::endl;
 }
 
-int str_to_int(const std::string& literal) {
+void printInfpos() {
+	std::cout << PREFIX_CHAR   << "impossible" << std::endl;
+	std::cout << PREFIX_INT    << "impossible" << std::endl;
+	std::cout << PREFIX_FLOAT  << "+inff" << std::endl;
+	std::cout << PREFIX_DOUBLE << "+inf" << std::endl;
+}
+
+void printInfneg() {
+	std::cout << PREFIX_CHAR   << "impossible" << std::endl;
+	std::cout << PREFIX_INT    << "impossible" << std::endl;
+	std::cout << PREFIX_FLOAT  << "-inff" << std::endl;
+	std::cout << PREFIX_DOUBLE << "-inf" << std::endl;
+}
+
+void printNan() {
+	std::cout << PREFIX_CHAR   << "impossible" << std::endl;
+	std::cout << PREFIX_INT    << "impossible" << std::endl;
+	std::cout << PREFIX_FLOAT  << "nanf" << std::endl;
+	std::cout << PREFIX_DOUBLE << "nan" << std::endl;
+}
+
+int strToInt(const std::string& literal) {
 	int i = 0;
 	std::istringstream(literal) >> i;
 	return i;
 }
 
-char int_to_char(const int i) {
+char intToChar(const int i) {
 	return i;
 }
 
-float str_to_float(const std::string& literal) {
+float strToFloat(const std::string& literal) {
 	float f = 0;
 	std::istringstream(literal) >> f;
 	return f;
 }
 
-double str_to_double(const std::string& literal) {
+double strToDouble(const std::string& literal) {
 	double d = 0;
 	std::istringstream(literal) >> d;
 	return d;
 }
 
 void ScalarConverter::convert(const std::string& literal) {
-	int    i = str_to_int(literal);
-	char   c = int_to_char(i);
-	float  f = str_to_float(literal);
-	double d = str_to_double(literal);
-
-	print_scalars(c, i, f, d);
+	if (literal == "inf" || literal == "+inf"
+		|| literal == "inff" || literal == "+inff")
+		printInfpos();
+	else if (literal == "-inf" || literal == "-inff")
+		printInfneg();
+	else if (literal == "nan" || literal == "nanf")
+		printNan();
+	else {
+		int    i = strToInt(literal);
+		char   c = intToChar(i);
+		float  f = strToFloat(literal);
+		double d = strToDouble(literal);
+		printScalars(c, i, f, d);
+	}
 }
 
 // char errors
