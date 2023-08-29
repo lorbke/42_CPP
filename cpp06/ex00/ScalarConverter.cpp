@@ -101,23 +101,3 @@ void ScalarConverter::convert(std::string literal) {
 		printScalars(literal, arith_check, i, f, d);
 	}
 }
-
-// char errors
-	// convert first to int, then to char
-// non displayable (not in ascii range)
-// impossible (no numbers included in str)
-
-// int errors
-
-// float errors
-	//
-// -inff
-// +inff
-// nanf
-
-// double errors
-// -inf
-// +inf
-// nan
-
-// overflows should be handled with message
