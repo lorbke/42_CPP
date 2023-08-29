@@ -35,19 +35,19 @@ void printScalars(const std::string& literal, const long double arith_check, con
 		std::cout << PREFIX_DOUBLE << ERR_INPUT << std::endl;
 	}
 	else {
-		if (arith_check > std::numeric_limits<int>::max() || arith_check < std::numeric_limits<int>::min())
+		if (arith_check > std::numeric_limits<int>::max() || arith_check < std::numeric_limits<int>::lowest())
 			std::cout << PREFIX_INT << ERR_ARITH << std::endl;
 		else
-			std::cout << PREFIX_INT    << i << std::endl;
-		if (arith_check > std::numeric_limits<float>::max() || arith_check < std::numeric_limits<float>::min())
+			std::cout << PREFIX_INT << i << std::endl;
+		if (arith_check > std::numeric_limits<float>::max() || arith_check < std::numeric_limits<float>::lowest())
 			std::cout << PREFIX_FLOAT << ERR_ARITH << std::endl;
 		else {
-			std::cout << PREFIX_FLOAT  << f;
+			std::cout << PREFIX_FLOAT << f;
 			if (f == (int)f)
 				std::cout << ".0";
 			std::cout << "f" << std::endl;
 		}
-		if (arith_check > std::numeric_limits<double>::max() || arith_check < std::numeric_limits<double>::min())
+		if (arith_check > std::numeric_limits<double>::max() || arith_check < std::numeric_limits<double>::lowest())
 			std::cout << PREFIX_DOUBLE << ERR_ARITH << std::endl;
 		else {
 			std::cout << PREFIX_DOUBLE << d;
