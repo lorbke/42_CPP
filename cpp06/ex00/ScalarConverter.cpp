@@ -2,12 +2,14 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <limits>
 
 #define PREFIX_CHAR   "char:   "
 #define PREFIX_INT    "int:    "
 #define PREFIX_FLOAT  "float:  "
 #define PREFIX_DOUBLE "double: "
 #define ERR_INPUT "impossible"
+#define ERR_ARITH "arithmetic exception"
 
 ScalarConverter::ScalarConverter() {}
 
@@ -20,7 +22,7 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& obj) {
 	return *this;
 }
 
-void printScalars(const std::string& literal, const int i, const float f, const double d) {
+void printScalars(const std::string& literal, const long double arith_check, const int i, const float f, const double d) {
 	static std::string numbers = "0123456789";
 
 	if (i < 32 || i > 127)
@@ -33,15 +35,26 @@ void printScalars(const std::string& literal, const int i, const float f, const 
 		std::cout << PREFIX_DOUBLE << ERR_INPUT << std::endl;
 	}
 	else {
-		std::cout << PREFIX_INT    << i << std::endl;
-		std::cout << PREFIX_FLOAT  << f;
-		if (f == (int)f)
-			std::cout << ".0";
-		std::cout << "f" << std::endl;
-		std::cout << PREFIX_DOUBLE << d;
-		if (d == (int)d)
-			std::cout << ".0";
-		std::cout << std::endl;
+		if (arith_check > std::numeric_limits<int>::max() || arith_check < std::numeric_limits<int>::min())
+			std::cout << PREFIX_INT << ERR_ARITH << std::endl;
+		else
+			std::cout << PREFIX_INT    << i << std::endl;
+		if (arith_check > std::numeric_limits<float>::max() || arith_check < std::numeric_limits<float>::min())
+			std::cout << PREFIX_FLOAT << ERR_ARITH << std::endl;
+		else {
+			std::cout << PREFIX_FLOAT  << f;
+			if (f == (int)f)
+				std::cout << ".0";
+			std::cout << "f" << std::endl;
+		}
+		if (arith_check > std::numeric_limits<double>::max() || arith_check < std::numeric_limits<double>::min())
+			std::cout << PREFIX_DOUBLE << ERR_ARITH << std::endl;
+		else {
+			std::cout << PREFIX_DOUBLE << d;
+			if (d == (int)d)
+				std::cout << ".0";
+			std::cout << std::endl;
+		}
 	}
 }
 
@@ -66,7 +79,7 @@ void printNan() {
 	std::cout << PREFIX_DOUBLE << "nan" << std::endl;
 }
 
-void ScalarConverter::convert(const std::string& literal) {
+void ScalarConverter::convert(std::string literal) {
 	if (literal == "inf" || literal == "+inf"
 		|| literal == "inff" || literal == "+inff")
 		printInfpos();
@@ -75,13 +88,17 @@ void ScalarConverter::convert(const std::string& literal) {
 	else if (literal == "nan" || literal == "nanf")
 		printNan();
 	else {
+		if (literal.find('f') != std::string::npos)
+			literal.erase(literal.find('f'));
 		int    i = 0;
 		float  f = 0;
 		double d = 0;
+		long double arith_check = 0;
+		std::istringstream(literal) >> arith_check;
 		std::istringstream(literal) >> i;
 		std::istringstream(literal) >> f;
 		std::istringstream(literal) >> d;
-		printScalars(literal, i, f, d);
+		printScalars(literal, arith_check, i, f, d);
 	}
 }
 
