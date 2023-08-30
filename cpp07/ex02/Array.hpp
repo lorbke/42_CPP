@@ -25,16 +25,14 @@ class Array {
 			Array lhs = new Array(rhs);
 			return lhs;
 		};
-		T& operator[](int index) const {
-			try {
-				return _data[index];
-			}
-			catch(const std::exception& e) {
-				std::cerr << e.what() << std::endl;
-			}
+		T& operator[](unsigned int index) const {
+			if (index >= _length)
+				throw std::invalid_argument("index is out of bounds");
 			return _data[index];
 		};
-		~Array() {};
+		~Array() {
+			delete[] _data;
+		};
 		unsigned int size() const {
 			return _length;
 		};

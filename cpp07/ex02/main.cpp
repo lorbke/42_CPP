@@ -36,5 +36,13 @@ int main(void) {
 	std::cout << "string array size:" << std::endl;
 	std::cout << str_arr.size() << std::endl;
 
+	std::cout << "out of bounds exception:" << std::endl;
+	try {
+		int_arr[10] = 42;
+	}
+	catch(const std::invalid_argument& e) {
+		std::cerr << e.what() << std::endl;
+	}
+
 	return 0;
 }
