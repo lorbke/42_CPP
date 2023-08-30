@@ -1,3 +1,6 @@
+#ifndef ARRAY_HPP
+#define ARRAY_HPP
+
 #include <exception>
 #include <iostream>
 
@@ -44,3 +47,5 @@ class Array {
 				_data[i] = T();
 		}
 };
+
+#endif  // ARRAY_HPP
