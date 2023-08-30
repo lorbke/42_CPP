@@ -4,7 +4,7 @@
 #include <iostream>
 #include "easyfind.hpp"
 
-// @note dereferencing container.end() is undefined behaviour as unallocated value is read!
+// @note dereferencing container.end() is undefined behaviour because unallocated value is read!
 // @note why return .end() if value is not occurring instead of exception? the .find() function does the same.
 int main(void) {
 	std::vector<int> vector;
