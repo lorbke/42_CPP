@@ -118,3 +118,26 @@
 		- static_cast to cast upwards in class hierarchy
 		- dynamic_cast to cast downwards in class hierarchy (and seldomly sideways)
 			- for this to work, base class must have at least one virtual function (polymporphism)
+		- C casting vs C++ casting
+			- C casting is not type safe
+			- C++ casting is type safe
+			- C++ casting is more specific
+				- static_cast
+				- dynamic_cast
+				- const_cast
+				- reinterpret_cast
+			- C++ casting, due to its specificity, checks for type safety at compile time, whereas C casting does not
+
+
+
+
+problem: 
+	- difficult to differentiate between a char and the rest of the data types
+
+	if length 1
+		if 0-9
+			int
+		else
+			char
+	else
+		
