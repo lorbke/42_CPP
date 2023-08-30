@@ -14,9 +14,25 @@ class Span {
 		void addSequence(std::vector<int> sequence);
 		unsigned int shortestSpan() const;
 		unsigned int longestSpan() const;
+		unsigned int getCapacity() const;
+		std::vector<int> getNumbers() const;
 	private:
-		const unsigned int _capacity;
-		std::vector<int>   _numbers;
+		unsigned int     _capacity;
+		std::vector<int> _numbers;
+};
+
+class CapacityException : public std::exception {
+	public:
+		const char *what() const throw() {
+			return "Span::CapacityException: capacity exceeded";
+		}
+};
+
+class SpanException : public std::exception {
+	public:
+		const char *what() const throw() {
+			return "Span::SpanException: capacity has to be greater than 1";
+		}
 };
 
 #endif  // SPAN_HPP_
