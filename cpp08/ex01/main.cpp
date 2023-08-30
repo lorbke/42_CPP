@@ -72,7 +72,7 @@ void test_three() {
 }	
 
 void test_four() {
-	std::cout << RED "unpacking the big guns now:" RESET << std::endl;
+	std::cout << RED "pulling out the big guns now:" RESET << std::endl;
 
 	std::vector<int> sequence;
 	for (int i = 0; i < 100000; ++i) {
