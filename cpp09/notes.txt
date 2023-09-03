@@ -1,3 +1,11 @@
 
 ---------------ex00----------------
-container: 
+container: map
+
+
+---------------ex01----------------
+container: queue
+
+
+---------------ex02----------------
+container: deque?
