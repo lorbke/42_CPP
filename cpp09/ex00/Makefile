@@ -48,7 +48,7 @@ re: fclean all
 # ______________________________________________________________ TESTING RULES #
 
 run: all
-	@./$(NAME)
+	@./$(NAME) input.txt
 
 rawrun:
 	@$(CXX) $(SRC) -o $(NAME)
