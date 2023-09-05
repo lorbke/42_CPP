@@ -18,7 +18,7 @@ class BitcoinExchange {
 		BitcoinExchange(const BitcoinExchange & obj);
 		BitcoinExchange& operator=(const BitcoinExchange& obj);
 		std::map<int, float, less_equal> get_map() const;
-		float get_offer(const int date, const float amount) const;
+		float get_price(const int date, const float amount) const;
 	private:
 		std::map<int, float, less_equal> _database;
 };

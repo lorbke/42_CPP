@@ -22,7 +22,7 @@ std::map<int, float, less_equal> BitcoinExchange::get_map() const {
 	return _database;
 }
 
-float BitcoinExchange::get_offer(const int date, const float amount) const {
+float BitcoinExchange::get_price(const int date, const float amount) const {
 	std::map<int, float>::const_iterator it = _database.lower_bound(date);
 	float price = it->second * amount;
 	return price;
