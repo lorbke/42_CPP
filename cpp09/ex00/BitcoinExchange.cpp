@@ -3,6 +3,7 @@
 #include <fstream>
 #include <cstdio>
 #include <iostream>
+#include <cstdlib>
 
 #define DEFAULT_DATABASE "data.csv"
 
@@ -43,7 +44,7 @@ int date_to_int(std::string date) {
 }
 
 void file_to_map(std::map<int, float, less_equal>& database, std::string filename) {
-	std::fstream file(filename);
+	std::fstream file(filename.c_str());
 	std::string line;
 	if (!file.is_open())
 		throw DatabaseError();
@@ -51,6 +52,6 @@ void file_to_map(std::map<int, float, less_equal>& database, std::string filenam
 	while (std::getline(file, line)) {
 		std::string date = line.substr(0, line.find(','));
 		std::string price = line.substr(line.find(',') + 1);
-		database[date_to_int(date)] = std::stof(price);
+		database[date_to_int(date)] = std::atof(price.c_str());
 	}
 }

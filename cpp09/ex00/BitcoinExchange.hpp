@@ -3,6 +3,7 @@
 
 #include <map>
 #include <exception>
+#include <string>
 
 struct less_equal {
 	bool operator() (const int lhs, const int rhs) const {

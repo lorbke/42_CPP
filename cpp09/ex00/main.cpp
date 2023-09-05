@@ -11,7 +11,7 @@ void print_map(std::map<int, float, less_equal> &database) {
 int main(void) {
 	BitcoinExchange exchange;
 
-	std::cout << exchange.get_price_at_date("2022-03-25") << std::endl;
+	std::cout << exchange.get_price_at_date("2022-03-24") << std::endl;
 
 	return 0;
 }
