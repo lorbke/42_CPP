@@ -64,8 +64,10 @@ std::string BitcoinExchange::evaluate(char* filename) const {
 		int ret = sscanf(line.c_str(), "%d-%d-%d | %f", &year, &month, &day, &amount);
 		int date = parse_date(year, month, day);
 		float price = get_price_at_date(date, amount);
-		if (ret != 4 || date == -1)
-			result << "Error: bad input => " << line << std::endl;
+		if (ret != 4)
+			result << "Error: bad input syntax => " << line << std::endl;
+		else if (date == -1)
+			result << "Error: bad date => " << line << std::endl;
 		else if (amount < 0)
 			result << "Error: not a positive number => " << amount << std::endl;
 		else if (amount > 1000)
