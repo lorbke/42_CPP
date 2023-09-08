@@ -46,6 +46,8 @@ void BitcoinExchange::database_to_map(const char* filename) {
 
 float BitcoinExchange::get_price_at_date(const int date, const float amount) const {
 	std::map<int, float>::const_iterator it = _database.lower_bound(date);
+	if (it == _database.end())
+		return -1;
 	float price = it->second * amount;
 	return price;
 }
@@ -62,26 +64,22 @@ std::string BitcoinExchange::evaluate(char* filename) const {
 		int ret = sscanf(line.c_str(), "%d-%d-%d | %f", &year, &month, &day, &amount);
 		int date = parse_date(year, month, day);
 		float price = get_price_at_date(date, amount);
-		if (ret != 4 || date == -1) {
+		if (ret != 4 || date == -1)
 			result << "Error: bad input => " << line << std::endl;
-			continue;
-		}
-		if (amount < 0) {
+		else if (amount < 0)
 			result << "Error: not a positive number => " << amount << std::endl;
-			continue;
-		}
-		if (amount > 1000) {
+		else if (amount > 1000)
 			result << "Error: amount must not be higher than 1000 => " << amount << std::endl;
-			continue;
-		}
-		if (price < 0) {
+		else if (price == -1)
+			result << "Error: input date too early" << std::endl;
+		else if (price < 0)
 			result << "Error: arithmetic error" << std::endl;
-			continue;
+		else {
+			result << year << "-" << month << "-" << day;
+			result <<" => " << amount << " = ";
+			result << price;
+			result << std::endl;
 		}
-		result << year << "-" << month << "-" << day;
-		result <<" => " << amount << " = ";
-		result << price;
-		result << std::endl;
 	}
 	file.close();
 	return result.str();
