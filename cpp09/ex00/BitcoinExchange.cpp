@@ -51,6 +51,7 @@ float BitcoinExchange::get_price_at_date(const int date, const float amount) con
 	float price = it->second * amount;
 	return price;
 }
+
 std::string BitcoinExchange::evaluate(char* filename) const {
 	std::fstream file(filename);
 	std::string line;
