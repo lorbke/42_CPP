@@ -1,5 +1,8 @@
 #include "RPN.hpp"
 #include <queue>
+#include <stack>
+#include <cctype>
+#include <iostream>
 
 RPN::RPN() {}
 
@@ -12,31 +15,54 @@ RPN& RPN::operator=(const RPN& obj) {
 	return *this;
 }
 
-int RPN::solve(std::queue<char> expression) {
-	int left = expression.front() - '0';
-	expression.pop();
-	int right = 0;
+void solve_next(std::stack<int>& buffer, const char op) {
+	int left, right;
 
-	while (!expression.empty()) {
-		right = expression.front() - '0';
-		expression.pop();
-		if (expression.empty())
-			throw BadExpression();
-		if (expression.front() == '+')
+	if (buffer.empty())
+		throw BadExpression();
+	right = buffer.top();
+	buffer.pop();
+	if (buffer.empty())
+		throw BadExpression();
+	left = buffer.top();
+	buffer.pop();
+
+	switch (op) {
+		case '+':
 			left += right;
-		else if (expression.front() == '-')
+			break;
+		case '-':
 			left -= right;
-		else if (expression.front() == '*')
+			break;
+		case '*':
 			left *= right;
-		else if (expression.front() == '/') {
+			break;
+		case '/':
 			if (right == 0)
 				throw BadExpression();
 			left /= right;
-		}
-		else
-			throw BadExpression();
-		expression.pop();
+			break;
 	}
 
-	return left;
+	buffer.push(left);
+}
+
+int RPN::solve(std::queue<char> expression) {
+	std::stack<int> buffer;
+
+	while (!expression.empty()) {
+		if (isdigit(expression.front())) {
+			buffer.push(expression.front() - '0');
+			expression.pop();
+		}
+		else {
+			solve_next(buffer, expression.front());
+			expression.pop();
+		}
+	}
+
+	if (buffer.size() != 1)
+		throw BadExpression();
+
+	return buffer.top();
 }

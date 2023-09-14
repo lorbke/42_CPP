@@ -18,11 +18,11 @@ std::queue<char> parse_str_expr(const std::string& str) {
 	static std::string allowed = "0123456789+-*/";
 	for (int i = 0; str[i]; i++) {
 		if (i % 2 == 0 && allowed.find(str[i]) == std::string::npos) {
-			std::cerr << "Error: invalid expression" << std::endl;
+			std::cerr << "Error: bad expression" << std::endl;
 			exit(1);
 		}
 		else if (i % 2 == 1 && str[i] != ' ') {
-			std::cerr << "Error: invalid expression" << std::endl;
+			std::cerr << "Error: bad expression" << std::endl;
 			exit(1);
 		}
 	}
