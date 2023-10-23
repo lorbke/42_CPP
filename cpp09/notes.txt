@@ -10,4 +10,77 @@ container: queue
 ---------------ex02----------------
 container: deque?
 
+Ford-Johnson algorithm
+- split list X of n elements into n/2 pairs
+- sort each pair
+- take greater element of each pair and recursively sort into a list S
+- insert smallest element of first element of S at beginning of S
+- order remaining n/2 - 1 elements (Y) into groups
+    - remember with which element x(i) each element of Y was paired with
+    - group sizes: 2, 2, 6, 10, 22, 42... (sums of sizes of two adjacent groups form sequence of powers of two (2, 4, 8, 16, 32, 64...))
+    - each group is sorted large to small indexes within the group
+    - the groups are sorted small to large indexes
+- insert Y numbers into S using binary search from start of S up to x(i) - 1 (where x(i) is the element of S with which the element of Y was paired with)
 
+    x(i) = S(x(1), x(2)...)
+    if i > 3, pair 
+
+Binary Search
+- algorithm to find target value 
+- go to middle of list, if target is greater than middle, search right half of list, recursively
+
+- the algorithm optimizes the worst case scenario because all search paths in the binary search have the same number of comparisons
+    list size 2 to the power of n - 1 will result in all search paths having exactly n comparisons, minimizing the worst case number
+    - maximal number of comparisons is same for 2^n and 2^(n+1) - 1 -> 8 and 15 will require same number of comparisons
+
+
+Process
+
+1. Merge Sort
+    >> list X of n elements
+   1.1 split list X into n/2 pairs
+   1.2 sort each pair
+    - x being the greater element of each pair
+    - y being the smaller element of each pair
+   1.3 merge sort greater each pair into list S
+    - i being the index of the pair
+    >> S { x(1), x(2), x(3), x(4)... }
+
+2. Optimization
+    2.1 insert y(0) at beginning of S
+
+3. Optimized Insertion Sort
+    >> list S of n/2 elements, n/2 pairs
+    3.1 split up y of pair into groups with sizes according to Jacobsthal sequence
+    3.2 sort each group of y from large to small indexes
+    3.3 sort groups from small to large indexes
+    3.4 insert y(i) into S using binary search from start of S up to s(i - 1)
+
+
+Refactored Process (closer to actual implementation)
+
+func one-side merge sort
+    input: list X of n elements
+        - create n/2 std::pairs with elements from list X
+            - sort each pair from small to large
+            - pair: y, x (smaller, greater)
+        - merge sort x elements of each pair into list S
+            - S: { x(1), x(2), x(3), x(4)... }
+        - insert y of S(0) at beginning of S
+    output: list S of n/2 elements, modified list X of n elements
+
+func optimized insertion sort
+    input: list S of n/2 elements, list X of n elements
+        - order y(i) into groups with sizes according to Jacobsthal sequence in list T
+        - sort each group of y from large to small indexes
+        - sort groups from small to large indexes
+        - insert y(i) into S using binary search from start of S up to s(i - 1)
+        - alternative: sort y(i) into S on the fly, without storing in T
+    output: sorted list S of n elements
+
+Questions
+    - what container to use?
+        - std::vector
+        - std::deque or list
+    - are redundant elements allowed?
+    - std::pair to store pairs of elements?
