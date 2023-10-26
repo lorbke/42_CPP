@@ -50,6 +50,9 @@ re: fclean all
 run: all
 	@./$(NAME)
 
+debug: CXXFLAGS += -DDEBUG=1
+debug: re
+
 test: all
 	-./$(NAME)
 	@echo -e "-------------------------------------"

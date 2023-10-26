@@ -62,8 +62,10 @@ int main(int argc, char** argv) {
 
     sorter.sort_numbers();
 
-    std::cout << "sorted vector:" << std::endl;
-    print_vector(sorter.numbers);
+    #ifdef DEBUG
+        std::cout << "sorted vector:" << std::endl;
+        print_vector(sorter.numbers);
+    #endif
 
     return 0;
 }

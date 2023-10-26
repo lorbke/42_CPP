@@ -3,6 +3,8 @@
 #include <iostream>
 #include <iomanip> // setw
 
+typedef std::vector<uint>::iterator iter;
+
 PmergeMe::PmergeMe() {}
 
 PmergeMe::~PmergeMe() {}
@@ -21,34 +23,29 @@ void print_vector_state(std::vector<uint> vec) {
 	std::cout << std::endl;
 }
 
-std::vector<uint> merge(std::vector<uint> left, std::vector<uint> right) {
-	std::vector<uint> result;
+void merge(std::vector<uint>& left, std::vector<uint>& right) {
+	#ifdef DEBUG
+		std::cout << "left, right: " << std::endl;
+		print_vector_state(left);
+		print_vector_state(right);
+	#endif
 
-	print_vector_state(left);
-	print_vector_state(right);
-
-	while (left.size() > 0 || right.size() > 0) {
-		if (left.size() == 0) {
-			result.push_back(right.front());
-			right.erase(right.begin());
-			continue;
-		} else if (right.size() == 0) {
-			result.push_back(left.front());
-			left.erase(left.begin());
-			continue;
+	for (iter it_r = right.begin(); it_r != right.end(); ++it_r) {
+		iter it_l = left.begin();
+		for (; it_l != left.end(); ++it_l) {
+			if (*it_l > *it_r) {
+				left.insert(it_l, *it_r);
+				break;
+			}
 		}
-		if (left.front() <= right.front()) {
-			result.push_back(left.front());
-			left.erase(left.begin());
-		} else {
-			result.push_back(right.front());
-			right.erase(right.begin());
-		}
+		if (it_l == left.end())
+			left.push_back(*it_r);
 	}
 
-	print_vector_state(result);
-
-	return (result);
+	#ifdef DEBUG
+		std::cout << "merged: " << std::endl;
+		print_vector_state(left);
+	#endif
 }
 
 std::vector<uint> merge_sort(std::vector<uint> numbers, int count) {
@@ -61,7 +58,9 @@ std::vector<uint> merge_sort(std::vector<uint> numbers, int count) {
 	left = merge_sort(left, count / 2);
 	right = merge_sort(right, count / 2);
 
-	return (merge(left, right));
+	merge(left, right);
+
+	return (left);
 }
 
 void PmergeMe::sort_numbers() {
