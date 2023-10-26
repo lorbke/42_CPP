@@ -54,10 +54,10 @@ int main(int argc, char** argv) {
             break;
         case 1:
             std::cerr << "error: wrong input: invalid chars" << std::endl;
-            break;
+            return 1;
         case 2:
             std::cerr << "error: wrong input: range error" << std::endl;
-            break;
+            return 2;
     }
 
     sorter.sort_numbers();
