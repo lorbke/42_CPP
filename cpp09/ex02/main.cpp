@@ -5,6 +5,7 @@
 #include <climits>
 #include <vector>
 #include "PmergeMe.hpp"
+#include "StopWatch.hpp"
 
 #define GREEN "\033[32m"
 #define RESET "\033[0m"
@@ -39,6 +40,7 @@ int main(int argc, char** argv) {
     }
 
     PmergeMe sorter;
+    StopWatch timer;
 
     switch (parse(++argv, sorter.numbers))
     {
@@ -55,7 +57,11 @@ int main(int argc, char** argv) {
             return 2;
     }
 
+    std::cout << timer.getTime() << std::endl;
+    timer.start();
     sorter.sort_numbers();
+    timer.stop();
+    std::cout << timer.getTime() << std::endl;
 
     #ifdef DEBUG
         std::cout << GREEN "sorted vector:" RESET << std::endl;

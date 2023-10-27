@@ -9,7 +9,7 @@ CXXFLAGS := -Wall -Wextra -Werror
 CXXFLAGS += -std=c++98
 
 SRC_DIR  := src
-SRC      := main.cpp debug.cpp PmergeMe.cpp
+SRC      := main.cpp debug.cpp PmergeMe.cpp StopWatch.cpp
 OBJ_DIR  := obj
 OBJ      := $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 
