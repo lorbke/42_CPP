@@ -9,7 +9,7 @@ CXXFLAGS := -Wall -Wextra -Werror
 CXXFLAGS += -std=c++98
 
 SRC_DIR  := src
-SRC      := main.cpp PmergeMe.cpp
+SRC      := main.cpp debug.cpp PmergeMe.cpp
 OBJ_DIR  := obj
 OBJ      := $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 
@@ -50,8 +50,9 @@ re: fclean all
 run: all
 	@./$(NAME)
 
-debug: CXXFLAGS += -DDEBUG=1
+debug: CXXFLAGS += -DDEBUG
 debug: re
+	@echo -e "$(RED)DEBUG MODE ACTIVE$(RESET)"
 
 test: all
 	-./$(NAME)

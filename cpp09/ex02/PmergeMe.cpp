@@ -5,6 +5,9 @@
 
 typedef std::vector<uint>::iterator iter;
 
+void debug_print_vector(std::vector<uint> vec);
+
+// @todo implement correct canonical form
 PmergeMe::PmergeMe() {}
 
 PmergeMe::~PmergeMe() {}
@@ -16,18 +19,11 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& obj) {
 	return *this;
 }
 
-void print_vector_state(std::vector<uint> vec) {
-	for(std::vector<uint>::iterator it = vec.begin(); it != vec.end(); ++it) {
-		std::cout << std::setw(7) <<  "[ " << *it << " ]";
-	}
-	std::cout << std::endl;
-}
-
 void merge(std::vector<uint>& left, std::vector<uint>& right) {
 	#ifdef DEBUG
 		std::cout << "left, right: " << std::endl;
-		print_vector_state(left);
-		print_vector_state(right);
+		debug_print_vector(left);
+		debug_print_vector(right);
 	#endif
 
 	for (iter it_r = right.begin(); it_r != right.end(); ++it_r) {
@@ -44,13 +40,18 @@ void merge(std::vector<uint>& left, std::vector<uint>& right) {
 
 	#ifdef DEBUG
 		std::cout << "merged: " << std::endl;
-		print_vector_state(left);
+		debug_print_vector(left);
+		std::cout << std::endl;
 	#endif
 }
 
 std::vector<uint> merge_sort(std::vector<uint> numbers, int count) {
 	if (count == 1)
 		return numbers;
+
+	#ifdef DEBUG
+		std::cout << "level " << count << std::endl;
+	#endif
 
 	std::vector<uint> left(numbers.begin(), numbers.begin() + count / 2);
 	std::vector<uint> right(numbers.begin() + count / 2, numbers.end());

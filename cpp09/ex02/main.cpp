@@ -6,17 +6,10 @@
 #include <vector>
 #include "PmergeMe.hpp"
 
-void print_vector(std::vector<uint> vec) {
-    for(std::vector<uint>::iterator it = vec.begin(); it != vec.end(); ++it) {
-        std::cout << *it << std::endl;
-    }
-}
+#define GREEN "\033[32m"
+#define RESET "\033[0m"
 
-void print_input(char** argv) {
-    for (int i = 0; argv[i]; i++) {
-       std::cout << argv[i] << std::endl;
-    }
-}
+void debug_print_vector(std::vector<uint> vec);
 
 bool is_str_only_num(char* str) {
     for (int i = 0; str[i]; i++) {
@@ -50,7 +43,9 @@ int main(int argc, char** argv) {
     switch (parse(++argv, sorter.numbers))
     {
         case 0:
-            std::cout << "success!" << std::endl;
+            #ifdef DEBUG
+                std::cout << "parsing success!" << std::endl;
+            #endif
             break;
         case 1:
             std::cerr << "error: wrong input: invalid chars" << std::endl;
@@ -63,8 +58,8 @@ int main(int argc, char** argv) {
     sorter.sort_numbers();
 
     #ifdef DEBUG
-        std::cout << "sorted vector:" << std::endl;
-        print_vector(sorter.numbers);
+        std::cout << GREEN "sorted vector:" RESET << std::endl;
+        debug_print_vector(sorter.numbers);
     #endif
 
     return 0;

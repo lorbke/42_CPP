@@ -1,5 +1,6 @@
 #include "StopWatch.hpp"
 
+// @todo implement correct canonical form
 StopWatch::StopWatch() {}
 
 StopWatch::~StopWatch() {}
