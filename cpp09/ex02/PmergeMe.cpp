@@ -3,6 +3,11 @@
 #include <iostream>
 #include <iomanip> // setw
 
+#define GREEN "\033[32m"
+#define BLUE "\033[34m"
+#define YELLOW "\033[33m"
+#define RESET "\033[0m"
+
 typedef std::vector<uint>::iterator iter;
 
 void debug_print_vector(std::vector<uint> vec);
@@ -21,7 +26,7 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& obj) {
 
 void merge(std::vector<uint>& left, std::vector<uint>& right) {
 	#ifdef DEBUG
-		std::cout << "left, right: " << std::endl;
+		std::cout << BLUE "left, right: " RESET << std::endl;
 		debug_print_vector(left);
 		debug_print_vector(right);
 	#endif
@@ -39,7 +44,7 @@ void merge(std::vector<uint>& left, std::vector<uint>& right) {
 	}
 
 	#ifdef DEBUG
-		std::cout << "merged: " << std::endl;
+		std::cout << BLUE "merged: " RESET << std::endl;
 		debug_print_vector(left);
 		std::cout << std::endl;
 	#endif
@@ -50,7 +55,7 @@ std::vector<uint> merge_sort(std::vector<uint> numbers, int count) {
 		return numbers;
 
 	#ifdef DEBUG
-		std::cout << "level " << count << std::endl;
+		std::cout << BLUE "level " RESET << count << std::endl;
 	#endif
 
 	std::vector<uint> left(numbers.begin(), numbers.begin() + count / 2);

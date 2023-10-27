@@ -9,6 +9,7 @@
 #include "StopWatch.hpp"
 
 #define GREEN "\033[32m"
+#define BLUE "\033[34m"
 #define YELLOW "\033[33m"
 #define RESET "\033[0m"
 
@@ -54,7 +55,7 @@ int main(int argc, char** argv) {
     {
         case 0:
             #ifdef DEBUG
-                std::cout << "parsing success!" << std::endl;
+                std::cout << BLUE "parsing success!" RESET << std::endl;
             #endif
             break;
         case 1:
