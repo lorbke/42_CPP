@@ -21,6 +21,7 @@ VPATH    := $(SRC_DIR)
 
 RED      := \033[0;31m
 GREEN    := \033[0;32m
+BLUE     := \033[0;34m
 RESET    := \033[0m
 
 # ______________________________________________________________________ RULES #
@@ -52,7 +53,7 @@ run: all
 
 debug: CXXFLAGS += -DDEBUG
 debug: re
-	@echo -e "$(RED)DEBUG MODE ACTIVE$(RESET)"
+	@echo -e "$(BLUE)DEBUG MODE ACTIVE$(RESET)"
 
 test: all
 	-./$(NAME)

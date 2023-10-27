@@ -24,23 +24,36 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& obj) {
 	return *this;
 }
 
-void merge(std::vector<uint>& left, std::vector<uint>& right) {
+void merge(std::vector<uint>& numbers, int start, int middle, int end) {
+	std::vector<uint> left(numbers.begin() + start, numbers.begin() + middle + 1);
+	std::vector<uint> right(numbers.begin() + middle + 1, numbers.begin() + end + 1);
+
 	#ifdef DEBUG
 		std::cout << BLUE "left, right: " RESET << std::endl;
 		debug_print_vector(left);
 		debug_print_vector(right);
 	#endif
 
-	for (iter it_r = right.begin(); it_r != right.end(); ++it_r) {
-		iter it_l = left.begin();
-		for (; it_l != left.end(); ++it_l) {
-			if (*it_l > *it_r) {
-				left.insert(it_l, *it_r);
-				break;
-			}
+	uint i = 0, j = 0, k = start;
+	while (i < left.size() && j < right.size()) {
+		if (left[i] <= right[j]) {
+			numbers[k] = left[i];
+			i++;
+		} else {
+			numbers[k] = right[j];
+			j++;
 		}
-		if (it_l == left.end())
-			left.push_back(*it_r);
+		k++;
+	}
+	while (i < left.size()) {
+		numbers[k] = left[i];
+		i++;
+		k++;
+ 	}
+	while (j < right.size()) {
+ 		numbers[k] = right[j];
+ 		j++;
+ 		k++;
 	}
 
 	#ifdef DEBUG
@@ -50,25 +63,22 @@ void merge(std::vector<uint>& left, std::vector<uint>& right) {
 	#endif
 }
 
-std::vector<uint> merge_sort(std::vector<uint> numbers, int count) {
-	if (count == 1)
-		return numbers;
-
+void merge_sort(std::vector<uint>& numbers, int start, int end) {
 	#ifdef DEBUG
-		std::cout << BLUE "level " RESET << count << std::endl;
+		std::cout << BLUE "level " RESET << end - start << std::endl;
 	#endif
 
-	std::vector<uint> left(numbers.begin(), numbers.begin() + count / 2);
-	std::vector<uint> right(numbers.begin() + count / 2, numbers.end());
+	if (start >= end)
+		return;
 
-	left = merge_sort(left, count / 2);
-	right = merge_sort(right, count / 2);
+	int middle = start + (end - start) / 2;
 
-	merge(left, right);
+	merge_sort(numbers, start, middle);
+	merge_sort(numbers, middle + 1, end);
 
-	return (left);
+	merge(numbers, start, middle, end);
 }
 
 void PmergeMe::sort_numbers() {
-	this->numbers = merge_sort(this->numbers, this->numbers.size());
+	merge_sort(this->numbers, 0, this->numbers.size() - 1);
 }
