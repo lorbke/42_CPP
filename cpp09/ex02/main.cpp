@@ -1,4 +1,5 @@
 #include <iostream> // io, uint
+#include <iomanip> // setw
 #include <cstdlib> // strtol
 #include <cctype> // isalnum
 #include <cerrno>
@@ -8,9 +9,16 @@
 #include "StopWatch.hpp"
 
 #define GREEN "\033[32m"
+#define YELLOW "\033[33m"
 #define RESET "\033[0m"
 
 void debug_print_vector(std::vector<uint> vec);
+
+void print_vector(std::vector<uint> vec) {
+    for(std::vector<uint>::iterator it = vec.begin(); it != vec.end(); ++it) {
+        std::cout << *it << " ";
+    }
+}
 
 bool is_str_only_num(char* str) {
     for (int i = 0; str[i]; i++) {
@@ -57,16 +65,21 @@ int main(int argc, char** argv) {
             return 2;
     }
 
-    std::cout << timer.getTime() << std::endl;
+    std::cout << YELLOW "before: ";
+    print_vector(sorter.numbers);
+    std::cout << RESET << std::endl;
+
     timer.start();
     sorter.sort_numbers();
     timer.stop();
-    std::cout << timer.getTime() << std::endl;
 
-    #ifdef DEBUG
-        std::cout << GREEN "sorted vector:" RESET << std::endl;
-        debug_print_vector(sorter.numbers);
-    #endif
+    std::cout << GREEN "after:  ";
+    print_vector(sorter.numbers);
+    std::cout << RESET << std::endl;
+
+    std::cout << "Time to process a range of " <<
+    argc - 1 << " elements with std::vector : " 
+    << timer.getTimeInMs() << " ms" <<  std::endl;
 
     return 0;
 }

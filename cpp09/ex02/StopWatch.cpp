@@ -1,5 +1,7 @@
 #include "StopWatch.hpp"
 
+#define CLOCKS_PER_MSEC (CLOCKS_PER_SEC / 1000)
+
 // @todo implement correct canonical form
 StopWatch::StopWatch() : start_time(0), running(false) {}
 
@@ -21,10 +23,10 @@ void StopWatch::stop() {
 	running = false;
 }
 
-double StopWatch::getTime() {
+double StopWatch::getTimeInMs() {
 	if (running) {
-		return (double)(std::clock() - start_time) / CLOCKS_PER_SEC;
+		return (double)(std::clock() - start_time) / CLOCKS_PER_MSEC;
 	} else {
-		return (double)start_time / CLOCKS_PER_SEC;
+		return (double)start_time / CLOCKS_PER_MSEC;
 	}
 }
