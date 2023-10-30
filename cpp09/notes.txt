@@ -56,7 +56,6 @@ Process
     3.3 sort groups from small to large indexes
     3.4 insert y(i) into S using binary search from start of S up to s(i - 1)
 
-
 Refactored Process (closer to actual implementation)
 
 func one-side merge sort
@@ -78,9 +77,42 @@ func optimized insertion sort
         - alternative: sort y(i) into S on the fly, without storing in T
     output: sorted list S of n elements
 
+---------------------------------------------------------------
+Actual Implementation Pseudo Code
+
+class variables
+    vector<int>& numbers
+    vector<int>& sorted
+
+merge_greater(int left, int middle, int right)
+    just sort the damn thing
+
+mod_merge_sort(int left, int right)
+    if left == right
+        return
+
+    if left == right - 1
+        if numbers[left] > numbers[right]
+            move numbers[left] to sorted
+        else
+            move numbers[right] to sorted
+        return
+
+    int middle = (left + right) / 2
+
+    merge_insertion_sort(middle, right)
+    merge_insertion_sort(left, middle - 1)
+
+    merge_greater(left / 2, middle / 2, right / 2)
+
+merge_insertion_sort
+    mod_merge_sort(numbers.start, numbers.end)
+
+    jacobsthal_sort
+
+    bs_insertion_sort
+
 Questions
     - what container to use?
         - std::vector
         - std::deque or list
-    - are redundant elements allowed?
-    - std::pair to store pairs of elements?
