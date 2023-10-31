@@ -13,8 +13,6 @@
 #define YELLOW "\033[33m"
 #define RESET "\033[0m"
 
-void debug_print_vector(std::vector<uint> vec);
-
 void print_vector(std::vector<uint> vec) {
     for(std::vector<uint>::iterator it = vec.begin(); it != vec.end(); ++it) {
         std::cout << *it << " ";

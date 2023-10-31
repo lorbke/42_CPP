@@ -12,8 +12,6 @@
 typedef std::vector<uint>::iterator iter;
 typedef unsigned int uint;
 
-void debug_print_vector(std::vector<uint> vec);
-
 // @todo implement correct canonical form
 PmergeMe::PmergeMe() {}
 
