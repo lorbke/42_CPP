@@ -1,15 +1,15 @@
-#include "mergeSort.hpp"
+#include "MergeSort.hpp"
 #include <vector>
 #include <iomanip>
 #include <iostream>
 
-mergeSort::mergeSort() {}
+MergeSort::MergeSort() {}
 
-mergeSort::~mergeSort() {}
+MergeSort::~MergeSort() {}
 
-mergeSort::mergeSort(const mergeSort & obj) { *this = obj; }
+MergeSort::MergeSort(const MergeSort & obj) { *this = obj; }
 
-mergeSort& mergeSort::operator=(const mergeSort& obj) {
+MergeSort& MergeSort::operator=(const MergeSort& obj) {
 	(void)obj;
 	return *this;
 }
@@ -40,7 +40,7 @@ void merge(std::vector<uint>& vec, int start, int middle, int end) {
 	}
 }
 
-void mergeSort::sort(std::vector<uint>& vec, int start, int end) {
+void MergeSort::sort(std::vector<uint>& vec, int start, int end) {
 	if (start >= end)
 		return;
 	int middle = start + (end - start) / 2;

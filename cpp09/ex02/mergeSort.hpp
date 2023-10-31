@@ -1,18 +1,18 @@
-#ifndef MERGESORT_HPP_
-#define MERGESORT_HPP_
+#ifndef MergeSort_HPP_
+#define MergeSort_HPP_
 
 #include <vector>
 
 typedef unsigned int uint;
 
-class mergeSort {
+class MergeSort {
 	public:
 		static void sort(std::vector<uint>& vec, int start, int end);
 	private:
-		mergeSort();
-		~mergeSort();
-		mergeSort(const mergeSort & obj);
-		mergeSort& operator=(const mergeSort& obj);
+		MergeSort();
+		~MergeSort();
+		MergeSort(const MergeSort & obj);
+		MergeSort& operator=(const MergeSort& obj);
 };
 
-#endif  // MERGESORT_HPP_
+#endif  // MergeSort_HPP_
