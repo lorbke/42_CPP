@@ -51,7 +51,7 @@ int main(int argc, char** argv) {
     PmergeMe sorter;
     StopWatch timer;
 
-    switch (parse(++argv, sorter.numbers))
+    switch (parse(++argv, sorter.vec))
     {
         case 0:
             #ifdef DEBUG
@@ -67,15 +67,15 @@ int main(int argc, char** argv) {
     }
 
     std::cout << YELLOW "before: ";
-    print_vector(sorter.numbers);
+    print_vector(sorter.vec);
     std::cout << RESET << std::endl;
 
     timer.start();
-    sorter.sort_numbers();
+    sorter.sort();
     timer.stop();
 
     std::cout << GREEN "after:  ";
-    print_vector(sorter.numbers);
+    print_vector(sorter.vec);
     std::cout << RESET << std::endl;
 
     std::cout << "Time to process a range of " <<

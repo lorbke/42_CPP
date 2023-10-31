@@ -10,8 +10,9 @@ class PmergeMe {
 		~PmergeMe();
 		PmergeMe(const PmergeMe & obj);
 		PmergeMe& operator=(const PmergeMe& obj);
-		std::vector<uint> numbers;
-		void sort_numbers();
+		std::vector<uint> vec;
+		std::vector<uint> sorted;
+		void sort();
 
 	private:
 };

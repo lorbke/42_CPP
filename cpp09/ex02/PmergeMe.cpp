@@ -1,4 +1,5 @@
 #include "PmergeMe.hpp"
+#include "mergeSort.hpp"
 #include <vector>
 #include <iostream>
 #include <iomanip> // setw
@@ -9,6 +10,7 @@
 #define RESET "\033[0m"
 
 typedef std::vector<uint>::iterator iter;
+typedef unsigned int uint;
 
 void debug_print_vector(std::vector<uint> vec);
 
@@ -24,61 +26,21 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& obj) {
 	return *this;
 }
 
-void merge(std::vector<uint>& numbers, int start, int middle, int end) {
-	std::vector<uint> left(numbers.begin() + start, numbers.begin() + middle + 1);
-	std::vector<uint> right(numbers.begin() + middle + 1, numbers.begin() + end + 1);
-
-	#ifdef DEBUG
-		std::cout << BLUE "left, right: " RESET << std::endl;
-		debug_print_vector(left);
-		debug_print_vector(right);
-	#endif
-
-	uint i = 0, j = 0, k = start;
-	while (i < left.size() && j < right.size()) {
-		if (left[i] <= right[j]) {
-			numbers[k] = left[i];
-			i++;
+void split_vec_into_pairs(std::vector<uint>& sorted, std::vector<uint>& vec) {
+	for (uint i = 0; i < vec.size() - 1; i++) {
+		if (vec[i] > vec[i + 1]) {
+			sorted.push_back(vec[i]);
+			vec.erase(vec.begin() + i);
 		} else {
-			numbers[k] = right[j];
-			j++;
+			sorted.push_back(vec[i + 1]);
+			vec.erase(vec.begin() + i + 1);
 		}
-		k++;
 	}
-	while (i < left.size()) {
-		numbers[k] = left[i];
-		i++;
-		k++;
- 	}
-	while (j < right.size()) {
- 		numbers[k] = right[j];
- 		j++;
- 		k++;
-	}
-
-	#ifdef DEBUG
-		std::cout << BLUE "merged: " RESET << std::endl;
-		debug_print_vector(left);
-		std::cout << std::endl;
-	#endif
+	sorted.insert(sorted.begin(), vec[0]);
+	vec.erase(vec.begin());
 }
 
-void merge_sort(std::vector<uint>& numbers, int start, int end) {
-	#ifdef DEBUG
-		std::cout << BLUE "level " RESET << end - start << std::endl;
-	#endif
-
-	if (start >= end)
-		return;
-
-	int middle = start + (end - start) / 2;
-
-	merge_sort(numbers, start, middle);
-	merge_sort(numbers, middle + 1, end);
-
-	merge(numbers, start, middle, end);
-}
-
-void PmergeMe::sort_numbers() {
-	merge_sort(this->numbers, 0, this->numbers.size() - 1);
+void PmergeMe::sort() {
+	split_vec_into_pairs(this->sorted, this->vec);
+	mergeSort::sort(this->sorted, 0, this->sorted.size() - 1);
 }
