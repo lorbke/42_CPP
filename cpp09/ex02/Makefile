@@ -9,7 +9,8 @@ CXXFLAGS := -Wall -Wextra -Werror
 CXXFLAGS += -std=c++98
 
 SRC_DIR  := src
-SRC      := main.cpp Debug.cpp PmergeMe.cpp StopWatch.cpp MergeSort.cpp
+SRC      := main.cpp Debug.cpp PmergeMe.cpp StopWatch.cpp MergeSort.cpp \
+			OptInsertionSort.cpp
 OBJ_DIR  := obj
 OBJ      := $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 
@@ -35,7 +36,8 @@ $(NAME): $(OBJ_DIR) $(OBJ)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-$(OBJ_DIR)/%.o: %.cpp PmergeMe.hpp StopWatch.hpp MergeSort.hpp Debug.hpp
+$(OBJ_DIR)/%.o: %.cpp PmergeMe.hpp StopWatch.hpp MergeSort.hpp Debug.hpp \
+				OptInsertionSort.hpp
 	$(CXX) $(CXXFLAGS) -I$(INC_DIR) -c $< -o $@
 
 clean:

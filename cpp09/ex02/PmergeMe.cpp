@@ -1,5 +1,6 @@
 #include "PmergeMe.hpp"
 #include "MergeSort.hpp"
+#include "OptInsertionSort.hpp"
 #include <vector>
 #include <iostream>
 #include <iomanip> // setw
@@ -40,5 +41,8 @@ void split_vec_into_pairs(std::vector<uint>& sorted, std::vector<uint>& vec) {
 
 void PmergeMe::sort() {
 	split_vec_into_pairs(this->sorted, this->vec);
+
 	MergeSort::sort(this->sorted, 0, this->sorted.size() - 1);
+
+	OptInsertionSort::sort(this->sorted, this->vec);
 }
