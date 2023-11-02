@@ -36,7 +36,7 @@ $(NAME): $(OBJ_DIR) $(OBJ)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-$(OBJ_DIR)/%.o: %.cpp PmergeMe.hpp StopWatch.hpp MergeSort.hpp Debug.hpp \
+$(OBJ_DIR)/%.o: %.cpp Debug.hpp PmergeMe.hpp StopWatch.hpp MergeSort.hpp \
 				OptInsertionSort.hpp
 	$(CXX) $(CXXFLAGS) -I$(INC_DIR) -c $< -o $@
 
