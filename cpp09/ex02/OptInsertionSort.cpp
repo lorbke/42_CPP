@@ -24,12 +24,12 @@ OptInsertionSort<Container>& OptInsertionSort<Container>::operator=(const OptIns
 	return *this;
 }
 
-// middle == vec.end() check is unnecessary,
-// preceding merge sort already places the greater pair elements in the vector.
+// middle == container.end() check is unnecessary,
+// preceding merge sort already places the greater pair elements in the containertor.
 template <typename Container>
 void binary_search_insert(Container& dest, uint value, int start, int end) {
 	uint middle = start + (end - start) / 2;
-	Debug<Container>::print_vec_bisearch(dest, dest[middle]);
+	Debug<Container>::print_container_bisearch(dest, dest[middle]);
 	if (middle == 0) {
 		if (dest[middle] >= value)
 			dest.insert(dest.begin(), value);
@@ -45,13 +45,13 @@ void binary_search_insert(Container& dest, uint value, int start, int end) {
 		dest.insert(dest.begin() + middle + 1, value);
 }
 
-uint get_last_jcbsnum(uint vec_size) {
-	if (vec_size <= jcbsqnce[0])
+uint get_last_jcbsnum(uint container_size) {
+	if (container_size <= jcbsqnce[0])
 		return 0;
 
 	uint i = 0;
 	for (; i < JCBSIZE; i++) {
-		if (vec_size <= jcbsqnce[i]) {
+		if (container_size <= jcbsqnce[i]) {
 			break;
 		}
 	}
@@ -66,17 +66,17 @@ void OptInsertionSort<Container>::sort(Container& dest, Container& src) {
 	int start = (src.size() < jcbsqnce[0]) ? src.size() - 1 : jcbsqnce[0] - 1;
 	for (int i = start; i >= 0; i--) {
 		binary_search_insert(dest, src[i], 0, dest.size() - 1);
-		Debug<Container>::print_vec_insert(dest, src, src[i]);
+		Debug<Container>::print_container_insert(dest, src, src[i]);
 	}
 	for (uint i = 1; i <= end; i++) {
 		for (uint j = jcbsqnce[i] - 1; j >= jcbsqnce[i - 1]; j--) {
 			binary_search_insert(dest, src[j], 0, dest.size() - 1);
-			Debug<Container>::print_vec_insert(dest, src, src[j]);
+			Debug<Container>::print_container_insert(dest, src, src[j]);
 		}
 	}
 	for (uint i = src.size() - 1; i >= jcbsqnce[end]; i--) {
 		binary_search_insert(dest, src[i], 0, dest.size() - 1);
-		Debug<Container>::print_vec_insert(dest, src, src[i]);
+		Debug<Container>::print_container_insert(dest, src, src[i]);
 	}
 }
 

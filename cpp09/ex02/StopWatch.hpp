@@ -9,6 +9,8 @@ class StopWatch {
 		~StopWatch();
 		StopWatch(const StopWatch & obj);
 		StopWatch& operator=(const StopWatch& obj);
+		bool get_running() const;
+		std::clock_t get_start_time() const;
 		double get_time_in_ms();
 		void start();
 		void stop();

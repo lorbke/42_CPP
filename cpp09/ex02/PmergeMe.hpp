@@ -1,9 +1,6 @@
 #ifndef PMERGEME_HPP_
 #define PMERGEME_HPP_
 
-#include <iostream> // uint
-#include <vector>
-
 template <typename Container>
 class PmergeMe {
 	public:
@@ -12,13 +9,15 @@ class PmergeMe {
 		~PmergeMe();
 		PmergeMe(const PmergeMe<Container>& obj);
 		PmergeMe<Container>& operator=(const PmergeMe<Container>& obj);
-		Container& get_vec();
-		Container& get_sorted();
+		Container get_container() const;
+		Container get_result() const;
+		Container& get_container();
+		Container& get_result();
 		void sort();
 
 	private:
-		Container vec;
-		Container sorted;
+		Container container;
+		Container result;
 };
 
 #endif  // PMERGEME_HPP_

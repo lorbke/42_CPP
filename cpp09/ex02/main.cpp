@@ -10,8 +10,8 @@
 #include <vector>
 #include <deque>
 
-void print_vector(std::vector<uint> vec) {
-	for(std::vector<uint>::iterator it = vec.begin(); it != vec.end(); ++it) {
+void print_containertor(std::vector<uint> container) {
+	for(std::vector<uint>::iterator it = container.begin(); it != container.end(); ++it) {
 		std::cout << *it << " ";
 	}
 }
@@ -38,9 +38,7 @@ int parse(char** input, Container& numbers) {
 	return 0;
 }
 
-// @todo rename vec to container
 // @todo follow orthodox canonical class form
-// @todo rename sorted to result
 
 int main(int argc, char** argv) {
 	if (argc <= 1) {
@@ -71,31 +69,33 @@ int main(int argc, char** argv) {
 	StopWatch timer;
 
 	std::cout << "before: ";
-	print_vector(sorter_vec.get_vec());
+	print_containertor(sorter_vec.get_container());
 	std::cout << std::endl;
 
 	timer.start();
 	sorter_vec.sort();
 	timer.stop();
+	Debug<std::vector<uint> >::container_sorted(sorter_vec.get_result());
 
 	std::cout << "after:  ";
-	print_vector(sorter_vec.get_sorted());
+	print_containertor(sorter_vec.get_result());
 	std::cout << std::endl;
 
 	std::cout << "Time to process a range of " <<
 	argc - 1 << " elements with std::vector : " 
 	<< timer.get_time_in_ms() << " ms" <<  std::endl;
 
-	Debug<std::vector<uint> >::vec_sorted(sorter_vec.get_sorted());
 	PmergeMe<std::deque<uint> > sorter_deq(deq);
 
 	timer.start();
 	sorter_deq.sort();
 	timer.stop();
+	Debug<std::deque<uint> >::container_sorted(sorter_deq.get_result());
 
 	std::cout << "Time to process a range of " <<
 	argc - 1 << " elements with std::deque : " 
 	<< timer.get_time_in_ms() << " ms" <<  std::endl;
+
 
 	return 0;
 }

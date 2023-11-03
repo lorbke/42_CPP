@@ -20,40 +20,40 @@ MergeSort<Container>& MergeSort<Container>::operator=(const MergeSort<Container>
 }
 
 template <typename Container>
-void merge(Container& vec, int start, int middle, int end) {
-	Container left(vec.begin() + start, vec.begin() + middle + 1);
-	Container right(vec.begin() + middle + 1, vec.begin() + end + 1);
+void merge(Container& container, int start, int middle, int end) {
+	Container left(container.begin() + start, container.begin() + middle + 1);
+	Container right(container.begin() + middle + 1, container.begin() + end + 1);
 	uint i = 0, j = 0, k = start;
 	while (i < left.size() && j < right.size()) {
 		if (left[i] <= right[j]) {
-			vec[k] = left[i];
+			container[k] = left[i];
 			i++;
 		} else {
-			vec[k] = right[j];
+			container[k] = right[j];
 			j++;
 		}
 		k++;
 	}
 	while (i < left.size()) {
-		vec[k] = left[i];
+		container[k] = left[i];
 		i++;
 		k++;
  	}
 	while (j < right.size()) {
- 		vec[k] = right[j];
+ 		container[k] = right[j];
  		j++;
  		k++;
 	}
 }
 
 template <typename Container>
-void MergeSort<Container>::sort(Container& vec, int start, int end) {
+void MergeSort<Container>::sort(Container& container, int start, int end) {
 	if (start >= end)
 		return;
 	int middle = start + (end - start) / 2;
-	sort(vec, start, middle);
-	sort(vec, middle + 1, end);
-	merge(vec, start, middle, end);
+	sort(container, start, middle);
+	sort(container, middle + 1, end);
+	merge(container, start, middle, end);
 }
 
 // necessary to avoid linker error, explicitly instantiates template class

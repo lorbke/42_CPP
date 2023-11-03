@@ -1,14 +1,12 @@
 #ifndef MergeSort_HPP_
 #define MergeSort_HPP_
 
-#include <vector>
-
 typedef unsigned int uint;
 
 template <typename Container>
 class MergeSort {
 	public:
-		static void sort(Container& vec, int start, int end);
+		static void sort(Container& container, int start, int end);
 	private:
 		MergeSort();
 		~MergeSort();

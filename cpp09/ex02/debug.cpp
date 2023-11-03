@@ -20,9 +20,9 @@ Debug<Container>& Debug<Container>::operator=(const Debug<Container>& obj) {
 }
 
 template <typename Container>
-int get_field_width(Container& vec) {
+int get_field_width(Container& container) {
 	uint largest = 0;
-	for (typename Container::iterator it = vec.begin(); it != vec.end(); it++) {
+	for (typename Container::iterator it = container.begin(); it != container.end(); it++) {
 		if (*it > largest)
 			largest = *it;
 	}
@@ -45,20 +45,20 @@ void Debug<Container>::print_input(char** argv) {
 }
 
 template <typename Container>
-void Debug<Container>::print_vec(Container& vec) {
+void Debug<Container>::print_container(Container& container) {
 	#ifdef DEBUG
-		for(typename Container::iterator it = vec.begin(); it != vec.end(); ++it) {
+		for(typename Container::iterator it = container.begin(); it != container.end(); ++it) {
 			std::cout <<  "[ " << *it << " ]";
 		}
 		std::cout << std::endl;
 	#endif
-	(void)vec;
+	(void)container;
 }
 
 template <typename Container>
-void print_vec_yellow(Container& vec, uint insert_val) {
-	int width = get_field_width(vec);
-		for(typename Container::iterator it = vec.begin(); it != vec.end(); ++it) {
+void print_container_yellow(Container& container, uint insert_val) {
+	int width = get_field_width(container);
+		for(typename Container::iterator it = container.begin(); it != container.end(); ++it) {
 			if (*it == insert_val)
 				std::cout << YELLOW "[ " << std::setw(width) << *it << " ]" RESET;
 			else
@@ -68,11 +68,11 @@ void print_vec_yellow(Container& vec, uint insert_val) {
 }
 
 template <typename Container>
-void Debug<Container>::print_vec_insert(Container& dest, Container& src, uint insert_val) {
+void Debug<Container>::print_container_insert(Container& dest, Container& src, uint insert_val) {
 	#ifdef DEBUG
-		print_vec_yellow(dest, insert_val);
+		print_container_yellow(dest, insert_val);
 		std::cout << YELLOW "inserted number, according to jacobsthal-sequence: " RESET << std::endl;
-		print_vec_yellow(src, insert_val);
+		print_container_yellow(src, insert_val);
 		std::cout << std::endl;
 	#endif
 	(void)dest;
@@ -81,10 +81,10 @@ void Debug<Container>::print_vec_insert(Container& dest, Container& src, uint in
 }
 
 template <typename Container>
-void Debug<Container>::print_vec_bisearch(Container& vec, uint insert_val) {
+void Debug<Container>::print_container_bisearch(Container& container, uint insert_val) {
 	#ifdef DEBUG
-		int width = get_field_width(vec);
-		for(typename Container::iterator it = vec.begin(); it != vec.end(); ++it) {
+		int width = get_field_width(container);
+		for(typename Container::iterator it = container.begin(); it != container.end(); ++it) {
 			if (*it == insert_val)
 				std::cout << BLUE "[ " << std::setw(width) << *it << " ]" RESET;
 			else
@@ -92,22 +92,22 @@ void Debug<Container>::print_vec_bisearch(Container& vec, uint insert_val) {
 		}
 		std::cout << std::endl;
 	#endif
-	(void)vec;
+	(void)container;
 	(void)insert_val;
 }
 
 template <typename Container>
-void Debug<Container>::vec_sorted(Container& vec) {
+void Debug<Container>::container_sorted(Container& container) {
 	#ifdef DEBUG
-		for (size_t i = 1; i < vec.size(); ++i) {
-			if (vec[i-1] > vec[i]) {
-				std::cout << RED "-------vector not sorted!------" RESET << std::endl;
+		for (size_t i = 1; i < container.size(); ++i) {
+			if (container[i-1] > container[i]) {
+				std::cout << RED "-------container not sorted!------" RESET << std::endl;
 				return ;
 			}
 		}
-		std::cout << GREEN "---------vector sorted!--------" RESET << std::endl;
+		std::cout << GREEN "---------container sorted!--------" RESET << std::endl;
 	#endif
-	(void)vec;
+	(void)container;
 }
 
 // necessary to avoid linker error, explicitly instantiates template class

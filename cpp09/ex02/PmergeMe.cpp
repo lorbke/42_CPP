@@ -13,59 +13,74 @@ template <typename Container>
 PmergeMe<Container>::PmergeMe() {}
 
 template <typename Container>
-PmergeMe<Container>::PmergeMe(Container cont) : vec(cont) {}
+PmergeMe<Container>::PmergeMe(Container cont) : container(cont) {}
 
 template <typename Container>
 PmergeMe<Container>::~PmergeMe() {}
 
 template <typename Container>
-PmergeMe<Container>::PmergeMe(const PmergeMe & obj) { *this = obj; }
+PmergeMe<Container>::PmergeMe(const PmergeMe & obj) {
+	*this = obj;
+	container = obj.get_container();
+	result = obj.get_result();
+}
 
 template <typename Container>
 PmergeMe<Container>& PmergeMe<Container>::operator=(const PmergeMe& obj) {
-	(void)obj;
+	container = obj.get_container();
+	result = obj.get_result();
 	return *this;
 }
 
 template <typename Container>
-Container& PmergeMe<Container>::get_vec() {
-	return vec;
+Container PmergeMe<Container>::get_container() const {
+	return container;
 }
 
 template <typename Container>
-Container& PmergeMe<Container>::get_sorted() {
-	return sorted;
+Container PmergeMe<Container>::get_result() const {
+	return result;
 }
 
 template <typename Container>
-void split_vec_into_pairs(Container& sorted, Container& vec) {
-	for (uint i = 0; i < vec.size() - 1; i++) {
-		if (vec[i] > vec[i + 1]) {
-			sorted.push_back(vec[i]);
-			vec.erase(vec.begin() + i);
+Container& PmergeMe<Container>::get_container() {
+	return container;
+}
+
+template <typename Container>
+Container& PmergeMe<Container>::get_result() {
+	return result;
+}
+
+template <typename Container>
+void split_container_into_pairs(Container& result, Container& container) {
+	for (uint i = 0; i < container.size() - 1; i++) {
+		if (container[i] > container[i + 1]) {
+			result.push_back(container[i]);
+			container.erase(container.begin() + i);
 		} else {
-			sorted.push_back(vec[i + 1]);
-			vec.erase(vec.begin() + i + 1);
+			result.push_back(container[i + 1]);
+			container.erase(container.begin() + i + 1);
 		}
 	}
-	sorted.insert(sorted.begin(), vec[0]);
-	vec.erase(vec.begin());
+	result.insert(result.begin(), container[0]);
+	container.erase(container.begin());
 }
 
 template <typename Container>
 void PmergeMe<Container>::sort() {
-	split_vec_into_pairs(sorted, vec);
+	split_container_into_pairs(result, container);
 	#ifdef DEBUG
 		std::cout << "\n" << BLUE "list of greater pair elements: " RESET << std::endl;
-		Debug<Container>::print_vec(sorted);
+		Debug<Container>::print_container(result);
 	#endif
-	MergeSort<Container>::sort(sorted, 0, sorted.size() - 1);
+	MergeSort<Container>::sort(result, 0, result.size() - 1);
 	#ifdef DEBUG
-		std::cout << "\n" << BLUE "merge sorted list of greater pair elements: " RESET << std::endl;
-		Debug<Container>::print_vec(sorted);
+		std::cout << "\n" << BLUE "merge result list of greater pair elements: " RESET << std::endl;
+		Debug<Container>::print_container(result);
 		std::cout << "\n" << BLUE "optimized insertion sort of smaller pair elements into list of greater pair elements: " RESET << std::endl;
 	#endif
-	OptInsertionSort<Container>::sort(sorted, vec);
+	OptInsertionSort<Container>::sort(result, container);
 }
 
 // necessary to avoid linker error, explicitly instantiates template class

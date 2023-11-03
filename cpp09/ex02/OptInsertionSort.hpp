@@ -1,8 +1,6 @@
 #ifndef OPTINSERTIONSORT_HPP_
 #define OPTINSERTIONSORT_HPP_
 
-#include <vector>
-
 typedef unsigned int uint;
 
 template <typename Container>
