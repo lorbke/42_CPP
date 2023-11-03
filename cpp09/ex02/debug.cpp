@@ -47,19 +47,26 @@ void Debug::print_vec(std::vector<uint>& vec) {
 	(void)vec;
 }
 
-void Debug::print_vec_insert(std::vector<uint>& vec, uint insert_val) {
-	#ifdef DEBUG
-		int width = get_field_width(vec);
+void print_vec_yellow(std::vector<uint>& vec, uint insert_val) {
+	int width = get_field_width(vec);
 		for(std::vector<uint>::iterator it = vec.begin(); it != vec.end(); ++it) {
 			if (*it == insert_val)
 				std::cout << YELLOW "[ " << std::setw(width) << *it << " ]" RESET;
 			else
 				std::cout <<  "[ " << std::setw(width) << *it << " ]";
 		}
+	std::cout << std::endl;
+}
+
+void Debug::print_vec_insert(std::vector<uint>& dest, std::vector<uint>& src, uint insert_val) {
+	#ifdef DEBUG
+		print_vec_yellow(dest, insert_val);
+		std::cout << YELLOW "inserted number, according to jacobsthal-sequence: " RESET << std::endl;
+		print_vec_yellow(src, insert_val);
 		std::cout << std::endl;
-		std::cout << YELLOW "inserted value: " << insert_val << RESET << "\n" << std::endl;
 	#endif
-	(void)vec;
+	(void)dest;
+	(void)src;
 	(void)insert_val;
 }
 

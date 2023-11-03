@@ -52,23 +52,23 @@ uint get_last_jcbsnum(uint vec_size) {
 	return i - 1;
 }
 
-void OptInsertionSort::sort(std::vector<uint>& dest, std::vector<uint>& from) {
-	if (from.size() == 0)
+void OptInsertionSort::sort(std::vector<uint>& dest, std::vector<uint>& src) {
+	if (src.size() == 0)
 		return ;
-	uint end = get_last_jcbsnum(from.size());
-	int start = (from.size() < jcbsqnce[0]) ? from.size() - 1 : jcbsqnce[0] - 1;
+	uint end = get_last_jcbsnum(src.size());
+	int start = (src.size() < jcbsqnce[0]) ? src.size() - 1 : jcbsqnce[0] - 1;
 	for (int i = start; i >= 0; i--) {
-		binary_search_insert(dest, from[i], 0, dest.size() - 1);
-		Debug::print_vec_insert(dest, from[i]);
+		binary_search_insert(dest, src[i], 0, dest.size() - 1);
+		Debug::print_vec_insert(dest, src, src[i]);
 	}
 	for (uint i = 1; i <= end; i++) {
 		for (uint j = jcbsqnce[i] - 1; j >= jcbsqnce[i - 1]; j--) {
-			binary_search_insert(dest, from[j], 0, dest.size() - 1);
-			Debug::print_vec_insert(dest, from[j]);
+			binary_search_insert(dest, src[j], 0, dest.size() - 1);
+			Debug::print_vec_insert(dest, src, src[j]);
 		}
 	}
-	for (uint i = from.size() - 1; i >= jcbsqnce[end]; i--) {
-		binary_search_insert(dest, from[i], 0, dest.size() - 1);
-		Debug::print_vec_insert(dest, from[i]);
+	for (uint i = src.size() - 1; i >= jcbsqnce[end]; i--) {
+		binary_search_insert(dest, src[i], 0, dest.size() - 1);
+		Debug::print_vec_insert(dest, src, src[i]);
 	}
 }
