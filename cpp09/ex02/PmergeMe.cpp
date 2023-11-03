@@ -13,6 +13,9 @@ template <typename Container>
 PmergeMe<Container>::PmergeMe() {}
 
 template <typename Container>
+PmergeMe<Container>::PmergeMe(Container cont) : vec(cont) {}
+
+template <typename Container>
 PmergeMe<Container>::~PmergeMe() {}
 
 template <typename Container>

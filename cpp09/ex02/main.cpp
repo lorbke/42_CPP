@@ -8,6 +8,7 @@
 #include <cerrno>
 #include <climits>
 #include <vector>
+#include <deque>
 
 void print_vector(std::vector<uint> vec) {
 	for(std::vector<uint>::iterator it = vec.begin(); it != vec.end(); ++it) {
@@ -23,7 +24,8 @@ bool is_str_only_num(char* str) {
 	return true;
 }
 
-int parse(char** input, std::vector<uint>& numbers) {
+template <typename Container>
+int parse(char** input, Container& numbers) {
 	errno = 0;
 
 	for (int i = 0; input[i]; i++) {
@@ -46,10 +48,10 @@ int main(int argc, char** argv) {
 		return 1;
 	}
 
-	PmergeMe<std::vector<uint> > sorter;
-	StopWatch timer;
+	std::vector<uint> vec;
+	std::deque<uint> deq;
 
-	switch (parse(++argv, sorter.get_vec()))
+	switch (parse(++argv, vec))
 	{
 		case 0:
 			#ifdef DEBUG
@@ -63,23 +65,36 @@ int main(int argc, char** argv) {
 		std::cerr << "error: wrong input: range error" << std::endl;
 		return 2;
 	}
+	parse(argv, deq);
+
+	PmergeMe<std::vector<uint> > sorter_vec(vec);
+	StopWatch timer;
 
 	std::cout << "before: ";
-	print_vector(sorter.get_vec());
+	print_vector(sorter_vec.get_vec());
 	std::cout << std::endl;
 
 	timer.start();
-	sorter.sort();
+	sorter_vec.sort();
 	timer.stop();
 
 	std::cout << "after:  ";
-	print_vector(sorter.get_sorted());
+	print_vector(sorter_vec.get_sorted());
 	std::cout << std::endl;
-
-	Debug<std::vector<uint> >::vec_sorted(sorter.get_sorted());
 
 	std::cout << "Time to process a range of " <<
 	argc - 1 << " elements with std::vector : " 
+	<< timer.get_time_in_ms() << " ms" <<  std::endl;
+
+	Debug<std::vector<uint> >::vec_sorted(sorter_vec.get_sorted());
+	PmergeMe<std::deque<uint> > sorter_deq(deq);
+
+	timer.start();
+	sorter_deq.sort();
+	timer.stop();
+
+	std::cout << "Time to process a range of " <<
+	argc - 1 << " elements with std::deque : " 
 	<< timer.get_time_in_ms() << " ms" <<  std::endl;
 
 	return 0;

@@ -8,6 +8,7 @@ template <typename Container>
 class PmergeMe {
 	public:
 		PmergeMe();
+		PmergeMe(Container cont);
 		~PmergeMe();
 		PmergeMe(const PmergeMe<Container>& obj);
 		PmergeMe<Container>& operator=(const PmergeMe<Container>& obj);
