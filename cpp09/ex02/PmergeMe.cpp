@@ -1,14 +1,10 @@
 #include "PmergeMe.hpp"
 #include "MergeSort.hpp"
 #include "OptInsertionSort.hpp"
+#include "Debug.hpp"
 #include <vector>
 #include <iostream>
 #include <iomanip> // setw
-
-#define GREEN "\033[32m"
-#define BLUE "\033[34m"
-#define YELLOW "\033[33m"
-#define RESET "\033[0m"
 
 typedef std::vector<uint>::iterator iter;
 typedef unsigned int uint;

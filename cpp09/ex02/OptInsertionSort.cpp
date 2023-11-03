@@ -1,4 +1,5 @@
 #include "OptInsertionSort.hpp"
+#include "Debug.hpp"
 #include <vector>
 #include <iostream>
 
@@ -16,13 +17,24 @@ OptInsertionSort& OptInsertionSort::operator=(const OptInsertionSort& obj) {
 	return *this;
 }
 
-void insert(std::vector<uint>& dest, uint value) {
-	for (std::vector<uint>::iterator it = dest.begin(); it != dest.end(); it++) {
-		if (*it >= value) {
-			dest.insert(it, value);
-			return;
-		}
+// middle == vec.end() check is unnecessary,
+// preceding merge sort already places the greater pair elements in the vector.
+void binary_search_insert(std::vector<uint>& dest, uint value, int start, int end) {
+	uint middle = start + (end - start) / 2;
+	Debug::print_vec_bisearch(dest, dest[middle]);
+	if (middle == 0) {
+		if (dest[middle] >= value)
+			dest.insert(dest.begin(), value);
+		else
+			dest.insert(dest.begin() + 1, value);
+		return ;
 	}
+	if (dest[middle] > value)
+		binary_search_insert(dest, value, start, middle);
+	else if (dest[middle + 1] < value)
+		binary_search_insert(dest, value, middle + 1, end);
+	else
+		dest.insert(dest.begin() + middle + 1, value);
 }
 
 uint get_last_jcbsnum(uint vec_size) {
@@ -48,13 +60,18 @@ void OptInsertionSort::sort(std::vector<uint>& dest, std::vector<uint>& from) {
 		std::cout << "from size: " << from.size() << std::endl;
 	#endif
 	int start = (from.size() < jcbsqnce[0]) ? from.size() - 1 : jcbsqnce[0] - 1;
-	for (int i = start; i >= 0; i--)
-		insert(dest, from[i]);
+	for (int i = start; i >= 0; i--) {
+		binary_search_insert(dest, from[i], 0, dest.size() - 1);
+		Debug::print_vec_insert(dest, from[i]);
+	}
 	for (uint i = 1; i <= end; i++) {
-		for (uint j = jcbsqnce[i] - 1; j >= jcbsqnce[i - 1]; j--)
-			insert(dest, from[j]);
+		for (uint j = jcbsqnce[i] - 1; j >= jcbsqnce[i - 1]; j--) {
+			binary_search_insert(dest, from[j], 0, dest.size() - 1);
+			Debug::print_vec_insert(dest, from[j]);
+		}
 	}
 	for (uint i = from.size() - 1; i >= jcbsqnce[end]; i--) {
-		insert(dest, from[i]);
+		binary_search_insert(dest, from[i], 0, dest.size() - 1);
+		Debug::print_vec_insert(dest, from[i]);
 	}
 }

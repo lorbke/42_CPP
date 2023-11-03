@@ -7,17 +7,7 @@
 #include <vector>
 #include "PmergeMe.hpp"
 #include "StopWatch.hpp"
-
-#define GREEN "\033[32m"
-#define BLUE "\033[34m"
-#define YELLOW "\033[33m"
-#define RESET "\033[0m"
-
-void print_vector(std::vector<uint> vec) {
-    for(std::vector<uint>::iterator it = vec.begin(); it != vec.end(); ++it) {
-        std::cout << *it << " ";
-    }
-}
+#include "Debug.hpp"
 
 bool is_str_only_num(char* str) {
     for (int i = 0; str[i]; i++) {
@@ -64,27 +54,23 @@ int main(int argc, char** argv) {
             return 2;
     }
 
-    #ifdef DEBUG
-        std::cout << YELLOW "before sorting: ";
-        print_vector(sorter.vec);
-        std::cout << "vector length: " << sorter.vec.size() << std::endl;
-        std::cout << RESET << std::endl;
-    #endif
-
     timer.start();
     sorter.sort();
     timer.stop();
 
     #ifdef DEBUG
-        std::cout << GREEN "after sorting: ";
-        print_vector(sorter.sorted);
+        bool sorted = Debug::is_vec_sorted(sorter.sorted);
+        if (sorted)
+            std::cout << GREEN "---------vector sorted!--------" RESET << std::endl;
+        else
+            std::cout << RED "-------vector not sorted!------" RESET << std::endl;
         std::cout << "vector length: " << sorter.sorted.size() << std::endl;
         std::cout << RESET << std::endl;
     #endif
 
     std::cout << "Time to process a range of " <<
     argc - 1 << " elements with std::vector : " 
-    << timer.getTimeInMs() << " ms" <<  std::endl;
+    << timer.get_time_in_ms() << " ms" <<  std::endl;
 
     return 0;
 }

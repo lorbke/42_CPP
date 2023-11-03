@@ -9,7 +9,7 @@ class StopWatch {
 		~StopWatch();
 		StopWatch(const StopWatch & obj);
 		StopWatch& operator=(const StopWatch& obj);
-		double getTimeInMs();
+		double get_time_in_ms();
 		void start();
 		void stop();
 

@@ -23,7 +23,7 @@ void StopWatch::stop() {
 	running = false;
 }
 
-double StopWatch::getTimeInMs() {
+double StopWatch::get_time_in_ms() {
 	if (running) {
 		return (double)(std::clock() - start_time) / CLOCKS_PER_MSEC;
 	} else {
