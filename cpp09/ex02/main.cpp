@@ -38,6 +38,7 @@ int parse(char** input, std::vector<uint>& numbers) {
 
 // @todo rename vec to container
 // @todo follow orthodox canonical class form
+// @todo rename sorted to result
 
 int main(int argc, char** argv) {
 	if (argc <= 1) {
@@ -45,7 +46,7 @@ int main(int argc, char** argv) {
 		return 1;
 	}
 
-	PmergeMe sorter;
+	PmergeMe<std::vector<uint> > sorter;
 	StopWatch timer;
 
 	switch (parse(++argv, sorter.get_vec()))
@@ -75,7 +76,7 @@ int main(int argc, char** argv) {
 	print_vector(sorter.get_sorted());
 	std::cout << std::endl;
 
-	Debug::vec_sorted(sorter.get_sorted());
+	Debug<std::vector<uint> >::vec_sorted(sorter.get_sorted());
 
 	std::cout << "Time to process a range of " <<
 	argc - 1 << " elements with std::vector : " 

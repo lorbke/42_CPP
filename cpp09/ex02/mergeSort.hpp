@@ -5,9 +5,10 @@
 
 typedef unsigned int uint;
 
+template <typename Container>
 class MergeSort {
 	public:
-		static void sort(std::vector<uint>& vec, int start, int end);
+		static void sort(Container& vec, int start, int end);
 	private:
 		MergeSort();
 		~MergeSort();

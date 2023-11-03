@@ -4,19 +4,20 @@
 #include <iostream> // uint
 #include <vector>
 
+template <typename Container>
 class PmergeMe {
 	public:
 		PmergeMe();
 		~PmergeMe();
-		PmergeMe(const PmergeMe & obj);
-		PmergeMe& operator=(const PmergeMe& obj);
-		std::vector<uint>& get_vec();
-		std::vector<uint>& get_sorted();
+		PmergeMe(const PmergeMe<Container>& obj);
+		PmergeMe<Container>& operator=(const PmergeMe<Container>& obj);
+		Container& get_vec();
+		Container& get_sorted();
 		void sort();
 
 	private:
-		std::vector<uint> vec;
-		std::vector<uint> sorted;
+		Container vec;
+		Container sorted;
 };
 
 #endif  // PMERGEME_HPP_

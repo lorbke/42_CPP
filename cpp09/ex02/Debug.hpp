@@ -12,18 +12,19 @@
 
 typedef unsigned int uint;
 
+template <typename Container>
 class Debug {
 	public:
 		static void print_input(char** argv);
-		static void print_vec(std::vector<uint>& vec);
-		static void print_vec_insert(std::vector<uint>& dest, std::vector<uint>& src, uint insert_val);
-		static void print_vec_bisearch(std::vector<uint>& vec, uint insert_val);
-		static void vec_sorted(std::vector<uint>& vec);
+		static void print_vec(Container& vec);
+		static void print_vec_insert(Container& dest, Container& src, uint insert_val);
+		static void print_vec_bisearch(Container& vec, uint insert_val);
+		static void vec_sorted(Container& vec);
 	private:
 		Debug();
 		~Debug();
-		Debug(const Debug & obj);
-		Debug& operator=(const Debug& obj);
+		Debug(const Debug<Container>& obj);
+		Debug<Container>& operator=(const Debug<Container>& obj);
 };
 
 #endif  // DEBUG_HPP_

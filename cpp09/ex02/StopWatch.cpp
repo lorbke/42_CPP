@@ -3,7 +3,6 @@
 
 #define CLOCKS_PER_MSEC (CLOCKS_PER_SEC / 1000)
 
-// @todo implement correct canonical form
 StopWatch::StopWatch() : start_time(0), running(false) {}
 
 StopWatch::~StopWatch() {}

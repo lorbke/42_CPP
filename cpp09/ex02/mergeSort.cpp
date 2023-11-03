@@ -1,22 +1,28 @@
 #include "MergeSort.hpp"
 #include <vector>
+#include <deque>
 #include <iomanip>
 #include <iostream>
 
-MergeSort::MergeSort() {}
+template <typename Container>
+MergeSort<Container>::MergeSort() {}
 
-MergeSort::~MergeSort() {}
+template <typename Container>
+MergeSort<Container>::~MergeSort() {}
 
-MergeSort::MergeSort(const MergeSort & obj) { *this = obj; }
+template <typename Container>
+MergeSort<Container>::MergeSort(const MergeSort<Container>& obj) { *this = obj; }
 
-MergeSort& MergeSort::operator=(const MergeSort& obj) {
+template <typename Container>
+MergeSort<Container>& MergeSort<Container>::operator=(const MergeSort<Container>& obj) {
 	(void)obj;
 	return *this;
 }
 
-void merge(std::vector<uint>& vec, int start, int middle, int end) {
-	std::vector<uint> left(vec.begin() + start, vec.begin() + middle + 1);
-	std::vector<uint> right(vec.begin() + middle + 1, vec.begin() + end + 1);
+template <typename Container>
+void merge(Container& vec, int start, int middle, int end) {
+	Container left(vec.begin() + start, vec.begin() + middle + 1);
+	Container right(vec.begin() + middle + 1, vec.begin() + end + 1);
 	uint i = 0, j = 0, k = start;
 	while (i < left.size() && j < right.size()) {
 		if (left[i] <= right[j]) {
@@ -40,7 +46,8 @@ void merge(std::vector<uint>& vec, int start, int middle, int end) {
 	}
 }
 
-void MergeSort::sort(std::vector<uint>& vec, int start, int end) {
+template <typename Container>
+void MergeSort<Container>::sort(Container& vec, int start, int end) {
 	if (start >= end)
 		return;
 	int middle = start + (end - start) / 2;
@@ -48,3 +55,7 @@ void MergeSort::sort(std::vector<uint>& vec, int start, int end) {
 	sort(vec, middle + 1, end);
 	merge(vec, start, middle, end);
 }
+
+// necessary to avoid linker error, explicitly instantiates template class
+template class MergeSort<std::vector<uint> >;
+template class MergeSort<std::deque<uint> >;

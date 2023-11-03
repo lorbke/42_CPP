@@ -3,32 +3,39 @@
 #include "OptInsertionSort.hpp"
 #include "Debug.hpp"
 #include <vector>
+#include <deque>
 #include <iostream>
 #include <iomanip> // setw
 
-typedef std::vector<uint>::iterator iter;
 typedef unsigned int uint;
 
-PmergeMe::PmergeMe() {}
+template <typename Container>
+PmergeMe<Container>::PmergeMe() {}
 
-PmergeMe::~PmergeMe() {}
+template <typename Container>
+PmergeMe<Container>::~PmergeMe() {}
 
-PmergeMe::PmergeMe(const PmergeMe & obj) { *this = obj; }
+template <typename Container>
+PmergeMe<Container>::PmergeMe(const PmergeMe & obj) { *this = obj; }
 
-PmergeMe& PmergeMe::operator=(const PmergeMe& obj) {
+template <typename Container>
+PmergeMe<Container>& PmergeMe<Container>::operator=(const PmergeMe& obj) {
 	(void)obj;
 	return *this;
 }
 
-std::vector<uint>& PmergeMe::get_vec() {
+template <typename Container>
+Container& PmergeMe<Container>::get_vec() {
 	return vec;
 }
 
-std::vector<uint>& PmergeMe::get_sorted() {
+template <typename Container>
+Container& PmergeMe<Container>::get_sorted() {
 	return sorted;
 }
 
-void split_vec_into_pairs(std::vector<uint>& sorted, std::vector<uint>& vec) {
+template <typename Container>
+void split_vec_into_pairs(Container& sorted, Container& vec) {
 	for (uint i = 0; i < vec.size() - 1; i++) {
 		if (vec[i] > vec[i + 1]) {
 			sorted.push_back(vec[i]);
@@ -42,17 +49,22 @@ void split_vec_into_pairs(std::vector<uint>& sorted, std::vector<uint>& vec) {
 	vec.erase(vec.begin());
 }
 
-void PmergeMe::sort() {
+template <typename Container>
+void PmergeMe<Container>::sort() {
 	split_vec_into_pairs(sorted, vec);
 	#ifdef DEBUG
 		std::cout << "\n" << BLUE "list of greater pair elements: " RESET << std::endl;
-		Debug::print_vec(sorted);
+		Debug<Container>::print_vec(sorted);
 	#endif
-	MergeSort::sort(sorted, 0, sorted.size() - 1);
+	MergeSort<Container>::sort(sorted, 0, sorted.size() - 1);
 	#ifdef DEBUG
 		std::cout << "\n" << BLUE "merge sorted list of greater pair elements: " RESET << std::endl;
-		Debug::print_vec(sorted);
+		Debug<Container>::print_vec(sorted);
 		std::cout << "\n" << BLUE "optimized insertion sort of smaller pair elements into list of greater pair elements: " RESET << std::endl;
 	#endif
-	OptInsertionSort::sort(sorted, vec);
+	OptInsertionSort<Container>::sort(sorted, vec);
 }
+
+// necessary to avoid linker error, explicitly instantiates template class
+template class PmergeMe<std::vector<uint> >;
+template class PmergeMe<std::deque<uint> >;

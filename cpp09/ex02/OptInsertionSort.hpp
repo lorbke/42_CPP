@@ -5,9 +5,10 @@
 
 typedef unsigned int uint;
 
+template <typename Container>
 class OptInsertionSort {
 	public:
-		static void sort(std::vector<uint>& to, std::vector<uint>& from);
+		static void sort(Container& to, Container& from);
 	private:
 		OptInsertionSort();
 		~OptInsertionSort();
