@@ -31,9 +31,10 @@ int get_field_width(std::vector<uint>& vec) {
 void Debug::print_input(char** argv) {
 	#ifdef DEBUG
 		for (int i = 0; argv[i]; i++) {
-		std::cout << argv[i] << std::endl;
+			std::cout << argv[i] << std::endl;
 		}
 	#endif
+	(void)argv;
 }
 
 void Debug::print_vec(std::vector<uint>& vec) {
@@ -43,6 +44,7 @@ void Debug::print_vec(std::vector<uint>& vec) {
 		}
 		std::cout << std::endl;
 	#endif
+	(void)vec;
 }
 
 void Debug::print_vec_insert(std::vector<uint>& vec, uint insert_val) {
@@ -57,6 +59,8 @@ void Debug::print_vec_insert(std::vector<uint>& vec, uint insert_val) {
 		std::cout << std::endl;
 		std::cout << YELLOW "inserted value: " << insert_val << RESET << "\n" << std::endl;
 	#endif
+	(void)vec;
+	(void)insert_val;
 }
 
 void Debug::print_vec_bisearch(std::vector<uint>& vec, uint insert_val) {
@@ -70,6 +74,8 @@ void Debug::print_vec_bisearch(std::vector<uint>& vec, uint insert_val) {
 		}
 		std::cout << std::endl;
 	#endif
+	(void)vec;
+	(void)insert_val;
 }
 
 bool Debug::is_vec_sorted(std::vector<uint>& vec) {
@@ -81,4 +87,6 @@ bool Debug::is_vec_sorted(std::vector<uint>& vec) {
 		}
 		return true;
 	#endif
+	(void)vec;
+	return false;
 }

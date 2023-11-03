@@ -1,3 +1,6 @@
+#include "PmergeMe.hpp"
+#include "StopWatch.hpp"
+#include "Debug.hpp"
 #include <iostream> // io, uint
 #include <iomanip> // setw
 #include <cstdlib> // strtol
@@ -5,9 +8,6 @@
 #include <cerrno>
 #include <climits>
 #include <vector>
-#include "PmergeMe.hpp"
-#include "StopWatch.hpp"
-#include "Debug.hpp"
 
 bool is_str_only_num(char* str) {
     for (int i = 0; str[i]; i++) {

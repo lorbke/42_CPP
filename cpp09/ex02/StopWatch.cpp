@@ -1,4 +1,5 @@
 #include "StopWatch.hpp"
+#include <ctime>
 
 #define CLOCKS_PER_MSEC (CLOCKS_PER_SEC / 1000)
 
