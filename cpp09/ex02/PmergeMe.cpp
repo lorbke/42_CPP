@@ -9,7 +9,6 @@
 typedef std::vector<uint>::iterator iter;
 typedef unsigned int uint;
 
-// @todo implement correct canonical form
 PmergeMe::PmergeMe() {}
 
 PmergeMe::~PmergeMe() {}
