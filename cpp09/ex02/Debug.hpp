@@ -17,7 +17,7 @@ class Debug {
 		static void print_vec(std::vector<uint>& vec);
 		static void print_vec_insert(std::vector<uint>& vec, uint insert_val);
 		static void print_vec_bisearch(std::vector<uint>& vec, uint insert_val);
-		static bool is_vec_sorted(std::vector<uint>& vec);
+		static void vec_sorted(std::vector<uint>& vec);
 	private:
 		Debug();
 		~Debug();

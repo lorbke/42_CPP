@@ -53,12 +53,7 @@ uint get_last_jcbsnum(uint vec_size) {
 void OptInsertionSort::sort(std::vector<uint>& dest, std::vector<uint>& from) {
 	if (from.size() == 0)
 		return ;
-
 	uint end = get_last_jcbsnum(from.size());
-	#ifdef DEBUG
-		std::cout << "last jacobsthal number: " << jcbsqnce[end] << std::endl;
-		std::cout << "from size: " << from.size() << std::endl;
-	#endif
 	int start = (from.size() < jcbsqnce[0]) ? from.size() - 1 : jcbsqnce[0] - 1;
 	for (int i = start; i >= 0; i--) {
 		binary_search_insert(dest, from[i], 0, dest.size() - 1);

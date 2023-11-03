@@ -78,15 +78,15 @@ void Debug::print_vec_bisearch(std::vector<uint>& vec, uint insert_val) {
 	(void)insert_val;
 }
 
-bool Debug::is_vec_sorted(std::vector<uint>& vec) {
+void Debug::vec_sorted(std::vector<uint>& vec) {
 	#ifdef DEBUG
 		for (size_t i = 1; i < vec.size(); ++i) {
 			if (vec[i-1] > vec[i]) {
-				return false;
+				std::cout << RED "-------vector not sorted!------" RESET << std::endl;
+				return ;
 			}
 		}
-		return true;
+		std::cout << GREEN "---------vector sorted!--------" RESET << std::endl;
 	#endif
 	(void)vec;
-	return false;
 }

@@ -36,9 +36,16 @@ void split_vec_into_pairs(std::vector<uint>& sorted, std::vector<uint>& vec) {
 }
 
 void PmergeMe::sort() {
-	split_vec_into_pairs(this->sorted, this->vec);
-
-	MergeSort::sort(this->sorted, 0, this->sorted.size() - 1);
-
-	OptInsertionSort::sort(this->sorted, this->vec);
+	split_vec_into_pairs(sorted, vec);
+	#ifdef DEBUG
+		std::cout << "\n" << BLUE "list of greater pair elements: " RESET << std::endl;
+		Debug::print_vec(sorted);
+	#endif
+	MergeSort::sort(sorted, 0, sorted.size() - 1);
+	#ifdef DEBUG
+		std::cout << "\n" << BLUE "merge sorted list of greater pair elements: " RESET << std::endl;
+		Debug::print_vec(sorted);
+		std::cout << "\n" << BLUE "optimized insertion sort of smaller pair elements into list of greater pair elements: " RESET << std::endl;
+	#endif
+	OptInsertionSort::sort(sorted, vec);
 }
