@@ -3,7 +3,9 @@
 #include <vector>
 #include <iostream>
 
-static uint jcbsqnce[27] = {3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461, 10923, 21845, 43691,
+#define JCBSIZE 27
+
+static uint jcbsqnce[JCBSIZE] = {3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461, 10923, 21845, 43691,
 87381, 174763, 349525, 699051, 1398101, 2796203, 5592405, 11184811, 22369621, 44739243, 89478485, 178956971};
 
 OptInsertionSort::OptInsertionSort() {}
@@ -42,7 +44,7 @@ uint get_last_jcbsnum(uint vec_size) {
 		return 0;
 
 	uint i = 0;
-	for (; i < 27; i++) {
+	for (; i < JCBSIZE; i++) {
 		if (vec_size <= jcbsqnce[i]) {
 			break;
 		}
