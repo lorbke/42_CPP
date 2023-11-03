@@ -16,6 +16,15 @@ OptInsertionSort& OptInsertionSort::operator=(const OptInsertionSort& obj) {
 	return *this;
 }
 
+void insert(std::vector<uint>& dest, uint value) {
+	for (std::vector<uint>::iterator it = dest.begin(); it != dest.end(); it++) {
+		if (*it >= value) {
+			dest.insert(it, value);
+			return;
+		}
+	}
+}
+
 uint get_last_jcbsnum(uint vec_size) {
 	if (vec_size <= jcbsqnce[0])
 		return 0;
@@ -29,35 +38,23 @@ uint get_last_jcbsnum(uint vec_size) {
 	return i - 1;
 }
 
-void OptInsertionSort::sort(std::vector<uint>& to, std::vector<uint>& from) {
+void OptInsertionSort::sort(std::vector<uint>& dest, std::vector<uint>& from) {
 	if (from.size() == 0)
 		return ;
 
-	to = from;
 	uint end = get_last_jcbsnum(from.size());
 	#ifdef DEBUG
 		std::cout << "last jacobsthal number: " << jcbsqnce[end] << std::endl;
 		std::cout << "from size: " << from.size() << std::endl;
 	#endif
-
-
 	int start = (from.size() < jcbsqnce[0]) ? from.size() - 1 : jcbsqnce[0] - 1;
 	for (int i = start; i >= 0; i--)
-		std::cout << i << std::endl;
+		insert(dest, from[i]);
 	for (uint i = 1; i <= end; i++) {
 		for (uint j = jcbsqnce[i] - 1; j >= jcbsqnce[i - 1]; j--)
-			std::cout << j << std::endl;
+			insert(dest, from[j]);
 	}
 	for (uint i = from.size() - 1; i >= jcbsqnce[end]; i--) {
-		std::cout << i << std::endl;
+		insert(dest, from[i]);
 	}
-
-	// for (uint i = 0; i <= end; i++) {
-	// 	for (uint j = jcbsqnce[i]; j > jcbsqnce[i - 1]; j--) {
-	// 		std::cout << j << std::endl;
-	// 	}
-	// }
-	// for (uint i = from.size() - 1; i > jcbsqnce[end]; i--) {
-	// 	std::cout << i << std::endl;
-	// }
 }

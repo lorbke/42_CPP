@@ -64,17 +64,23 @@ int main(int argc, char** argv) {
             return 2;
     }
 
-    std::cout << YELLOW "before: ";
-    print_vector(sorter.vec);
-    std::cout << RESET << std::endl;
+    #ifdef DEBUG
+        std::cout << YELLOW "before sorting: ";
+        print_vector(sorter.vec);
+        std::cout << "vector length: " << sorter.vec.size() << std::endl;
+        std::cout << RESET << std::endl;
+    #endif
 
     timer.start();
     sorter.sort();
     timer.stop();
 
-    std::cout << GREEN "after:  ";
-    print_vector(sorter.vec);
-    std::cout << RESET << std::endl;
+    #ifdef DEBUG
+        std::cout << GREEN "after sorting: ";
+        print_vector(sorter.sorted);
+        std::cout << "vector length: " << sorter.sorted.size() << std::endl;
+        std::cout << RESET << std::endl;
+    #endif
 
     std::cout << "Time to process a range of " <<
     argc - 1 << " elements with std::vector : " 
