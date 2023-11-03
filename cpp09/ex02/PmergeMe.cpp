@@ -21,6 +21,14 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& obj) {
 	return *this;
 }
 
+std::vector<uint>& PmergeMe::get_vec() {
+	return vec;
+}
+
+std::vector<uint>& PmergeMe::get_sorted() {
+	return sorted;
+}
+
 void split_vec_into_pairs(std::vector<uint>& sorted, std::vector<uint>& vec) {
 	for (uint i = 0; i < vec.size() - 1; i++) {
 		if (vec[i] > vec[i + 1]) {

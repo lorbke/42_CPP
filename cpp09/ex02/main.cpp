@@ -36,6 +36,9 @@ int parse(char** input, std::vector<uint>& numbers) {
 	return 0;
 }
 
+// @todo rename vec to container
+// @todo follow orthodox canonical class form
+
 int main(int argc, char** argv) {
 	if (argc <= 1) {
 		std::cerr << "usage: pmergeme { value }" << std::endl;
@@ -45,7 +48,7 @@ int main(int argc, char** argv) {
 	PmergeMe sorter;
 	StopWatch timer;
 
-	switch (parse(++argv, sorter.vec))
+	switch (parse(++argv, sorter.get_vec()))
 	{
 		case 0:
 			#ifdef DEBUG
@@ -61,7 +64,7 @@ int main(int argc, char** argv) {
 	}
 
 	std::cout << "before: ";
-	print_vector(sorter.vec);
+	print_vector(sorter.get_vec());
 	std::cout << std::endl;
 
 	timer.start();
@@ -69,10 +72,10 @@ int main(int argc, char** argv) {
 	timer.stop();
 
 	std::cout << "after:  ";
-	print_vector(sorter.sorted);
+	print_vector(sorter.get_sorted());
 	std::cout << std::endl;
 
-	Debug::vec_sorted(sorter.sorted);
+	Debug::vec_sorted(sorter.get_sorted());
 
 	std::cout << "Time to process a range of " <<
 	argc - 1 << " elements with std::vector : " 
