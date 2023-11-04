@@ -5,14 +5,11 @@
 #include <math.h>
 #include <iostream>
 #include <cstdlib>
-#include <ctime>
 
 Base::~Base() {
 }
 
 Base* Base::generate(void) {
-    srand(std::time(NULL));
-
     int random = std::rand() % 3;
 
     switch (random) {

@@ -1,5 +1,7 @@
 #include "Base.hpp"
 #include <iostream>
+#include <ctime>
+#include <math.h>
 
 void test_one() {
 	std::cout << "test one:" << std::endl;
@@ -22,6 +24,7 @@ void test_two() {
 }
 
 int main() {
+	srand(std::time(NULL)); // generate seed for random number generation
     test_one();
 	test_two();
 
