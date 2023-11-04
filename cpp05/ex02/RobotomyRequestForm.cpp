@@ -3,6 +3,7 @@
 #include "Bureaucrat.hpp"
 #include <iostream>
 #include <cstdlib>
+#include <ctime>
 
 RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", false, 72, 45), _target("default") {}
 
@@ -17,7 +18,8 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm & obj) :
 }
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& obj) {
-	(void)obj;
+	if (this != &obj)
+		_target = obj._target;
 	return *this;
 }
 
@@ -27,6 +29,7 @@ void RobotomyRequestForm::execute(Bureaucrat const & executor) const {
 	if (executor.getGrade() > this->getGradeToExec())
 		throw AForm::GradeTooLowException(this->getGradeToExec());
 	std::cout << "* drilling noises *" << std::endl;
+	srand(time(NULL)); // create new seed from current time for rand()
 	if (rand() % 2)
 		std::cout << _target << " has been robotomized" << std::endl;
 	else

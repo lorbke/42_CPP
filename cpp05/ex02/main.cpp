@@ -22,7 +22,7 @@ void test_one() {
 void test_two() {
     std::cout << "test two:" << std::endl;
 
-    Bureaucrat b("b", 72);
+    Bureaucrat b("b", 45);
     RobotomyRequestForm f("f", false, "Marvin");
 
     try {
@@ -64,19 +64,11 @@ void test_four() {
     }
 }
 
-// @todo test constructors of derived classes
-// @todo test especially the assignment operator and if the target is copied
-// @todo check if signed and custom exception if not signed
-
 int main(void) {
     test_one();
     test_two();
     test_three();
     test_four();
-    // test_five();
-    // test_six();
-    // test_seven();
-    // test_eight();
 
     return 0;
 }
