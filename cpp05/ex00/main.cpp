@@ -78,6 +78,17 @@ void test_seven() {
     std::cout << b << std::endl;
 }
 
+void test_eight() {
+    std::cout << "test eight:" << std::endl;
+
+    Bureaucrat b("Manfred", 111);
+    Bureaucrat cpy = b;
+    std::cout << cpy << std::endl;
+
+    Bureaucrat b2(b);
+    std::cout << b2 << std::endl;
+}
+
 int main() {
     test_one();
     test_two();
@@ -86,6 +97,7 @@ int main() {
     test_five();
     test_six();
     test_seven();
+    test_eight();
 
     return 0;
 }

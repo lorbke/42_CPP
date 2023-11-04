@@ -16,10 +16,15 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name), _grade
 
 Bureaucrat::~Bureaucrat() {}
 
-Bureaucrat::Bureaucrat(const Bureaucrat & obj) { *this = obj; }
+Bureaucrat::Bureaucrat(const Bureaucrat & obj) {
+    *this = obj;
+}
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& obj) {
-    (void)obj;
+    if (this != &obj) {
+        _name = obj._name;
+        _grade = obj._grade;
+    }
     return *this;
 }
 
