@@ -16,14 +16,14 @@ AForm::AForm(std::string name, bool is_signed, int grade_to_sign, int grade_to_e
 		throw AForm::GradeTooLowException();
 }
 
-AForm::~AForm() {}
-
 AForm::AForm(const AForm & obj) : _name(obj._name), _is_signed(obj._is_signed), _grade_to_sign(obj._grade_to_sign), _grade_to_exec(obj._grade_to_exec) {
 	*this = obj;
 }
 
 AForm& AForm::operator=(const AForm& obj) {
-	(void)obj;
+	if (this != &obj) {
+		_is_signed = obj._is_signed;
+	}
 	return *this;
 }
 

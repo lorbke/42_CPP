@@ -12,7 +12,7 @@ class AForm {
 	public:
 		             AForm();
 		             AForm(std::string name, bool is_signed, int grade_to_sign, int grade_to_exec);
-		             ~AForm();
+		virtual      ~AForm() {};
 		             AForm(const AForm & obj);
 		AForm&       operator=(const AForm& obj);
 		std::string  getName() const;

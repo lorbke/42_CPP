@@ -52,7 +52,7 @@ AForm* Intern::makeForm(const std::string& name, const std::string& target) cons
 			return (formFuncs[i])(name, target);
 		}
 		else {
-			std::cout << "ehm...what is an " << name << "?" << std::endl;
+			std::cout << "ehm...what is a " << name << "?" << std::endl;
 			return NULL;
 		}
 	}
