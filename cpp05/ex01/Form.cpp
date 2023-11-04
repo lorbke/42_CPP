@@ -23,7 +23,8 @@ Form::Form(const Form & obj) : _name(obj._name), _is_signed(obj._is_signed), _gr
 }
 
 Form& Form::operator=(const Form& obj) {
-	(void)obj;
+	if (this != &obj)
+		_is_signed = obj._is_signed;
 	return *this;
 }
 
