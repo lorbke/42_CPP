@@ -70,43 +70,34 @@ void printScalars(Data& data, const std::string& literal) {
 		std::cout << PREFIX_CHAR   << "Non displayable" << std::endl;
 	else
 		std::cout << PREFIX_CHAR   << "'" << data.c << "'" << std::endl;
-	if (literal.find_first_of(numbers) == std::string::npos) {
-		std::cout << PREFIX_INT    << ERR_INPUT << std::endl;
-		std::cout << PREFIX_FLOAT  << ERR_INPUT << std::endl;
-		std::cout << PREFIX_DOUBLE << ERR_INPUT << std::endl;
-	}
+	if (arith_check > std::numeric_limits<int>::max() || arith_check < -std::numeric_limits<int>::max())
+		std::cout << PREFIX_INT << ERR_ARITH << std::endl;
+	else
+		std::cout << PREFIX_INT << data.i << std::endl;
+	if (arith_check > std::numeric_limits<float>::max() || arith_check < -std::numeric_limits<float>::max())
+		std::cout << PREFIX_FLOAT << ERR_ARITH << std::endl;
 	else {
-		if (arith_check > std::numeric_limits<int>::max() || arith_check < -std::numeric_limits<int>::max())
-			std::cout << PREFIX_INT << ERR_ARITH << std::endl;
-		else
-			std::cout << PREFIX_INT << data.i << std::endl;
-		if (arith_check > std::numeric_limits<float>::max() || arith_check < -std::numeric_limits<float>::max())
-			std::cout << PREFIX_FLOAT << ERR_ARITH << std::endl;
-		else {
-			std::cout << PREFIX_FLOAT << data.f;
-			if (data.f == (int)data.d)
-				std::cout << ".0";
-			std::cout << "f" << std::endl;
-		}
-		if (arith_check > std::numeric_limits<double>::max() || arith_check < -std::numeric_limits<double>::max())
-			std::cout << PREFIX_DOUBLE << ERR_ARITH << std::endl;
-		else {
-			std::cout << PREFIX_DOUBLE << data.d;
-			if (data.d == (int)data.d)
-				std::cout << ".0";
-			std::cout << std::endl;
-		}
+		std::cout << PREFIX_FLOAT << data.f;
+		if (data.f == (int)data.d)
+			std::cout << ".0";
+		std::cout << "f" << std::endl;
+	}
+	if (arith_check > std::numeric_limits<double>::max() || arith_check < -std::numeric_limits<double>::max())
+		std::cout << PREFIX_DOUBLE << ERR_ARITH << std::endl;
+	else {
+		std::cout << PREFIX_DOUBLE << data.d;
+		if (data.d == (int)data.d)
+			std::cout << ".0";
+		std::cout << std::endl;
 	}
 }
 
 Type getType(std::string& literal) {
-	std::istringstream stream_c(literal);
 	std::istringstream stream_i(literal);
 	std::istringstream stream_d(literal);
 	int    i;
-	char   c;
 	double d;
-	if (stream_c >> c && stream_c.eof())
+	if (literal.size() == 1 && !std::isdigit(literal[0]))
 		return CHAR;
 	if (literal.find('f') != std::string::npos
 		&& literal.find('f') == literal.size() - 1) {
