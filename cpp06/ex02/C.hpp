@@ -1,4 +1,4 @@
-#ifndef _HPP_
+#ifndef C_HPP_
 #define C_HPP_
 
 #include "Base.hpp"

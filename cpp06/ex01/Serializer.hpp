@@ -3,8 +3,6 @@
 
 #include <string>
 
-typedef unsigned int* uintptr_t;
-
 struct Data {
 	std::string data;
 };

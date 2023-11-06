@@ -3,7 +3,7 @@
 
 class Base {
 	public:
-		virtual	~Base(); // polymorphism needed for dynamic_cast
+		virtual	~Base() {}; // polymorphism needed for dynamic_cast
 		Base*	generate(void);
 		void	identify(Base* p);
 		void	identify(Base& p);

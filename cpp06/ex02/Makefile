@@ -9,8 +9,7 @@ CXXFLAGS := -Wall -Wextra -Werror
 CXXFLAGS += -std=c++98
 
 SRC_DIR  := src
-SRC      := main.cpp \
-			Base.cpp
+SRC      := main.cpp
 OBJ_DIR  := obj
 OBJ      := $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 
