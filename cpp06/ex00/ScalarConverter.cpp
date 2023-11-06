@@ -4,12 +4,30 @@
 #include <sstream>
 #include <limits>
 
+#define BLUE "\033[0;34m"
+#define RESET "\033[0m"
+
 #define PREFIX_CHAR   "char:   "
 #define PREFIX_INT    "int:    "
 #define PREFIX_FLOAT  "float:  "
 #define PREFIX_DOUBLE "double: "
 #define ERR_INPUT "impossible"
 #define ERR_ARITH "arithmetic exception"
+
+struct Data {
+	char   c;
+	int    i;
+	float  f;
+	double d;
+};
+
+enum Type {
+	CHAR,
+	INT,
+	FLOAT,
+	DOUBLE,
+	ERROR
+};
 
 ScalarConverter::ScalarConverter() {}
 
@@ -20,42 +38,6 @@ ScalarConverter::ScalarConverter(const ScalarConverter & obj) { *this = obj; }
 ScalarConverter& ScalarConverter::operator=(const ScalarConverter& obj) {
 	(void)obj;
 	return *this;
-}
-
-void printScalars(const std::string& literal, const long double arith_check, const int i, const float f, const double d) {
-	static std::string numbers = "0123456789";
-
-	if (i < 32 || i > 127)
-		std::cout << PREFIX_CHAR   << "Non displayable" << std::endl;
-	else
-		std::cout << PREFIX_CHAR   << "'" << static_cast<char>(i) << "'" << std::endl;
-	if (literal.find_first_of(numbers) == std::string::npos) {
-		std::cout << PREFIX_INT    << ERR_INPUT << std::endl;
-		std::cout << PREFIX_FLOAT  << ERR_INPUT << std::endl;
-		std::cout << PREFIX_DOUBLE << ERR_INPUT << std::endl;
-	}
-	else {
-		if (arith_check > std::numeric_limits<int>::max() || arith_check < std::numeric_limits<int>::lowest())
-			std::cout << PREFIX_INT << ERR_ARITH << std::endl;
-		else
-			std::cout << PREFIX_INT << i << std::endl;
-		if (arith_check > std::numeric_limits<float>::max() || arith_check < std::numeric_limits<float>::lowest())
-			std::cout << PREFIX_FLOAT << ERR_ARITH << std::endl;
-		else {
-			std::cout << PREFIX_FLOAT << f;
-			if (f == (int)f)
-				std::cout << ".0";
-			std::cout << "f" << std::endl;
-		}
-		if (arith_check > std::numeric_limits<double>::max() || arith_check < std::numeric_limits<double>::lowest())
-			std::cout << PREFIX_DOUBLE << ERR_ARITH << std::endl;
-		else {
-			std::cout << PREFIX_DOUBLE << d;
-			if (d == (int)d)
-				std::cout << ".0";
-			std::cout << std::endl;
-		}
-	}
 }
 
 void printInfpos() {
@@ -79,6 +61,97 @@ void printNan() {
 	std::cout << PREFIX_DOUBLE << "nan" << std::endl;
 }
 
+void printScalars(Data& data, const std::string& literal) {
+	static std::string numbers = "0123456789";
+	long double arith_check = 0;
+	std::istringstream(literal) >> arith_check;
+
+	if (data.c < 32 || data.c > 127)
+		std::cout << PREFIX_CHAR   << "Non displayable" << std::endl;
+	else
+		std::cout << PREFIX_CHAR   << "'" << data.c << "'" << std::endl;
+	if (literal.find_first_of(numbers) == std::string::npos) {
+		std::cout << PREFIX_INT    << ERR_INPUT << std::endl;
+		std::cout << PREFIX_FLOAT  << ERR_INPUT << std::endl;
+		std::cout << PREFIX_DOUBLE << ERR_INPUT << std::endl;
+	}
+	else {
+		if (arith_check > std::numeric_limits<int>::max() || arith_check < std::numeric_limits<int>::lowest())
+			std::cout << PREFIX_INT << ERR_ARITH << std::endl;
+		else
+			std::cout << PREFIX_INT << data.i << std::endl;
+		if (arith_check > std::numeric_limits<float>::max() || arith_check < std::numeric_limits<float>::lowest())
+			std::cout << PREFIX_FLOAT << ERR_ARITH << std::endl;
+		else {
+			std::cout << PREFIX_FLOAT << data.f;
+			if (data.f == (int)data.d)
+				std::cout << ".0";
+			std::cout << "f" << std::endl;
+		}
+		if (arith_check > std::numeric_limits<double>::max() || arith_check < std::numeric_limits<double>::lowest())
+			std::cout << PREFIX_DOUBLE << ERR_ARITH << std::endl;
+		else {
+			std::cout << PREFIX_DOUBLE << data.d;
+			if (data.d == (int)data.d)
+				std::cout << ".0";
+			std::cout << std::endl;
+		}
+	}
+}
+
+Type getType(std::string& literal) {
+	std::istringstream stream_c(literal);
+	std::istringstream stream_i(literal);
+	std::istringstream stream_d(literal);
+	char   c;
+	int    i;
+	double d;
+	if (stream_c >> c && stream_c.eof())
+		return CHAR;
+	else if (literal.find('f') != std::string::npos
+		&& literal.find('f') == literal.size() - 1) {
+		literal.erase(literal.find('f'));
+		return FLOAT;
+	}
+	else if (stream_d >> d && stream_d.eof())
+		return DOUBLE;
+	else if (stream_i >> i && stream_i.eof())
+		return INT;
+	return ERROR;
+}
+
+void explicitConversion(Data& data, std::string literal, Type type) {
+	std::istringstream stream(literal);
+	switch(type) {
+		case CHAR:
+			stream >> data.c;
+			data.i = static_cast<int>(data.c);
+			data.f = static_cast<float>(data.c);
+			data.d = static_cast<double>(data.c);
+			break;
+		case INT:
+			stream >> data.i;
+			data.c = static_cast<char>(data.i);
+			data.f = static_cast<float>(data.i);
+			data.d = static_cast<double>(data.i);
+			break;
+		case FLOAT:
+			stream >> data.f;
+			data.c = static_cast<char>(data.f);
+			data.i = static_cast<int>(data.f);
+			data.d = static_cast<double>(data.f);
+			break;
+		case DOUBLE:
+			stream >> data.d;
+			data.c = static_cast<char>(data.d);
+			data.i = static_cast<int>(data.d);
+			data.f = static_cast<float>(data.d);
+			break;
+		case ERROR:
+			break;
+	}
+}
+
 void ScalarConverter::convert(std::string literal) {
 	if (literal == "inf" || literal == "+inf"
 		|| literal == "inff" || literal == "+inff")
@@ -88,16 +161,13 @@ void ScalarConverter::convert(std::string literal) {
 	else if (literal == "nan" || literal == "nanf")
 		printNan();
 	else {
-		if (literal.find('f') != std::string::npos)
-			literal.erase(literal.find('f'));
-		int    i = 0;
-		float  f = 0;
-		double d = 0;
-		long double arith_check = 0;
-		std::istringstream(literal) >> arith_check;
-		std::istringstream(literal) >> i;
-		std::istringstream(literal) >> f;
-		std::istringstream(literal) >> d;
-		printScalars(literal, arith_check, i, f, d);
+		Type type = getType(literal);
+		if (type == ERROR) {
+			std::cout << "Error: no possible type conversion" << std::endl;
+			return;
+		}
+		Data data;
+		explicitConversion(data, literal, type);
+		printScalars(data, literal);
 	}
 }
