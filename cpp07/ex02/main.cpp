@@ -25,13 +25,13 @@ int main(void) {
 
 	std::cout << "int array from copy assignment operator:" << std::endl;
 	int_arr[0] = 42;
-	Array<int>* int_arr_ptr = &int_arr;
-	print_arr(*int_arr_ptr);
+	Array<int> int_arr_cpy = int_arr;
+	print_arr(int_arr_cpy);
 
 	std::cout << "int array from copy constructor:" << std::endl;
 	int_arr[1] = 42;
-	Array<int> int_arr_copy = Array<int>(int_arr);
-	print_arr(int_arr_copy);
+	Array<int> int_arr_cpyy = Array<int>(int_arr);
+	print_arr(int_arr_cpyy);
 
 	std::cout << "string array size:" << std::endl;
 	std::cout << str_arr.size() << std::endl;
