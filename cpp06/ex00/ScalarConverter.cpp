@@ -103,20 +103,23 @@ Type getType(std::string& literal) {
 	std::istringstream stream_c(literal);
 	std::istringstream stream_i(literal);
 	std::istringstream stream_d(literal);
-	char   c;
 	int    i;
+	char   c;
 	double d;
 	if (stream_c >> c && stream_c.eof())
 		return CHAR;
-	else if (literal.find('f') != std::string::npos
+	if (literal.find('f') != std::string::npos
 		&& literal.find('f') == literal.size() - 1) {
 		literal.erase(literal.find('f'));
-		return FLOAT;
+		std::istringstream stream_f(literal);
+		if (stream_f >> d && stream_f.eof())
+			return FLOAT;
 	}
-	else if (stream_d >> d && stream_d.eof())
+	if (stream_d >> d && stream_d.eof())
 		return DOUBLE;
-	else if (stream_i >> i && stream_i.eof())
+	if (stream_i >> i && stream_i.eof()) {
 		return INT;
+	}
 	return ERROR;
 }
 
@@ -166,6 +169,9 @@ void ScalarConverter::convert(std::string literal) {
 			std::cout << "Error: no possible type conversion" << std::endl;
 			return;
 		}
+		#ifdef DEBUG
+			std::cout << BLUE"type: "RESET << type << std::endl;
+		#endif
 		Data data;
 		explicitConversion(data, literal, type);
 		printScalars(data, literal);
