@@ -66,7 +66,7 @@ void printScalars(Data& data, const std::string& literal) {
 	long double arith_check = 0;
 	std::istringstream(literal) >> arith_check;
 
-	if (data.c < 32 || data.c > 127)
+	if (data.i < 32 || data.i > 127)
 		std::cout << PREFIX_CHAR   << "Non displayable" << std::endl;
 	else
 		std::cout << PREFIX_CHAR   << "'" << data.c << "'" << std::endl;
@@ -76,11 +76,11 @@ void printScalars(Data& data, const std::string& literal) {
 		std::cout << PREFIX_DOUBLE << ERR_INPUT << std::endl;
 	}
 	else {
-		if (arith_check > std::numeric_limits<int>::max() || arith_check < std::numeric_limits<int>::lowest())
+		if (arith_check > std::numeric_limits<int>::max() || arith_check < -std::numeric_limits<int>::max())
 			std::cout << PREFIX_INT << ERR_ARITH << std::endl;
 		else
 			std::cout << PREFIX_INT << data.i << std::endl;
-		if (arith_check > std::numeric_limits<float>::max() || arith_check < std::numeric_limits<float>::lowest())
+		if (arith_check > std::numeric_limits<float>::max() || arith_check < -std::numeric_limits<float>::max())
 			std::cout << PREFIX_FLOAT << ERR_ARITH << std::endl;
 		else {
 			std::cout << PREFIX_FLOAT << data.f;
@@ -88,7 +88,7 @@ void printScalars(Data& data, const std::string& literal) {
 				std::cout << ".0";
 			std::cout << "f" << std::endl;
 		}
-		if (arith_check > std::numeric_limits<double>::max() || arith_check < std::numeric_limits<double>::lowest())
+		if (arith_check > std::numeric_limits<double>::max() || arith_check < -std::numeric_limits<double>::max())
 			std::cout << PREFIX_DOUBLE << ERR_ARITH << std::endl;
 		else {
 			std::cout << PREFIX_DOUBLE << data.d;

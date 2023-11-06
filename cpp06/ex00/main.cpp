@@ -5,8 +5,8 @@
 int main(int argc, char **argv) {
 	if (argc != 2) {
 		std::cout << "usage: ./scalarconverter [value]" << std::endl;
-		return EXIT_FAILURE;
+		return 1;
 	}
 	ScalarConverter::convert(argv[1]);
-	return EXIT_SUCCESS;
+	return 0;
 }
